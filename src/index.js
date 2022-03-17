@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Parent from './ParentChild/Parent';
-import Register from './Registration/Register'
+import Register from './Register'
 import './App.css';
 import reportWebVitals from './reportWebVitals';
 
