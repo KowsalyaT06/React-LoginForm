@@ -1,6 +1,7 @@
 import React from "react";
-import Form from './Form';
+
 import './Register.css';
+import Form from './Component/Signup/Form'
  function Register(){
      return(
          <>

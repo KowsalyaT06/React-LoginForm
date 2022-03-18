@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
-import Parent from './ParentChild/Parent';
-import Register from './Register'
+import { BrowserRouter } from "react-router-dom";
+// import Parent from './ParentChild/Parent';
+import App from './App'
 import './App.css';
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
   <React.StrictMode>
-
+<App />
     {/* <Parent/> */}
-    <Register />
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
