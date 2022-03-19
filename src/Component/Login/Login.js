@@ -5,23 +5,21 @@ import './Login.css'
 // import { validEmail, validPassword } from "./Emailvalidate"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
+import { inputClasses } from "@mui/material";
 // import { useNavigate,Link } from "react-router-dom";
 function Login() {
-  let navigate=useNavigate()
-  const intial = { username: "", 
-                   email: "", 
-                   password: "" };
+  let navigate = useNavigate()
+  const intial = {
+    username: "",
+    email: "",
+    password: ""
+  };
   const [input, setInput] = useState(intial);
-  // const [error, setError] = useState('');
-  // const [errorPass, seterrorPass] = useState('');
-  // const [successMsg, setSuccessMsg] = useState('');
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  const handleChange = (e)=>{
-    setInput({...input,[e.target.name]: e.target.value,})
+
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value, })
   }
-  
+
 
   const formSubmitter = (e) => {
     e.preventDefault();
@@ -43,12 +41,13 @@ function Login() {
     // };
     // const results = result()
     // if (results) {
-    let Details = localStorage.getItem("Details")
+    let Details = localStorage.getItem("datas")
     let newDetails = JSON.parse(Details)
-    console.log(newDetails)
-    if (newDetails.Emails === input.email && newDetails.Password === input.password) {
+    let current = newDetails.find((val) => val.email===input.email && val.password===input.password)
+    console.log(current)
+    if (current) {
       alert("Successfully login")
-      // navigate("/Home")
+      navigate("/Home")
     }
     else {
       alert("Not Successful")
@@ -94,7 +93,7 @@ function Login() {
 
 
               <div className="d-grid gap-2">
-                <Button variant="primary" type="submit" size="lg" onClick={() => navigate('/Home')}>
+                <Button variant="primary" type="submit" size="lg" >
                   Continue
                 </Button>
               </div>

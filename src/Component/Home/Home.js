@@ -6,22 +6,22 @@ import { Container } from "react-bootstrap";
 import './Home.css';
 const Home = () => {
     return (
-     
+
         <>
-             <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#home">Welcome</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#">Home</Nav.Link>
-                        <Nav.Link href="#">About</Nav.Link>
-                        <Nav.Link href="#">Contact</Nav.Link>
+                        <Nav.Link href="/Login">Login</Nav.Link>
+                        <Nav.Link href="/">Signup</Nav.Link>
+
                     </Nav>
                 </Container>
             </Navbar>
             <div className="wel">
-            <h1>Welcome</h1>
+                <h1>Welcome</h1>
             </div>
-            </>
+        </>
     )
 }
 export default Home
