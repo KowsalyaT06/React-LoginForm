@@ -48,6 +48,7 @@ function Login() {
     if (current) {
       alert("Successfully login")
       navigate("/Home")
+      
     }
     else {
       alert("Not Successful")

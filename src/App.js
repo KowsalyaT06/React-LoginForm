@@ -12,9 +12,9 @@ const App =()=>{
       
       <Routes>
       
-    <Route exact path='/' element={<Form/>}/>
-    <Route exact path="/Login" element={<Login/>}/>
-    <Route exact path="/Home" element={<Home/>}/> 
+    <Route  path='/' element={<Form/>}/>
+    <Route  path="/Login" element={<Login/>}/>
+    <Route  path="/Home" element={<Home/>}/> 
    
     </Routes>
       </Router>
