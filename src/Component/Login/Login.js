@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { ReactDOM } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import './Login.css'
-// import { validEmail, validPassword } from "./Emailvalidate"
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
 import { inputClasses } from "@mui/material";
+import { Modal } from 'react-bootstrap';
 // import { useNavigate,Link } from "react-router-dom";
 function Login() {
   let navigate = useNavigate()
@@ -16,6 +17,13 @@ function Login() {
   };
   const [input, setInput] = useState(intial);
 
+  const [popup, setPopup] = useState(false);
+  const showModal = () => {
+    setPopup(true);
+  }
+  const hideModal = () => {
+    setPopup(false);
+  }
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value, })
   }
@@ -23,40 +31,39 @@ function Login() {
 
   const formSubmitter = (e) => {
     e.preventDefault();
-    // const result = () => {
-    //   let confirm = true
 
-
-    //   if (!validEmail(input.email))
-    //     return setError('Your email is invalid');
-    //   confirm = false
-    //   if (!validPassword(input.password))
-    //     return seterrorPass('Your password is invalid');
-    //   confirm = false
-    //successmessage
-    // setSuccessMsg('Successfully validate');
-
-    // setInput('');
-    //   return confirm
-    // };
-    // const results = result()
-    // if (results) {
     let Details = localStorage.getItem("datas")
     let newDetails = JSON.parse(Details)
-    let current = newDetails.find((val) => val.email===input.email && val.password===input.password)
+    let current = newDetails.find((val) => val.email === input.email && val.password === input.password)
     console.log(current)
     if (current) {
-      alert("Successfully login")
+      alert('Successfully Login')
+      localStorage.setItem('currents', JSON.stringify(current))
       navigate("/Home")
-      
+
     }
     else {
-      alert("Not Successful")
+      setPopup(true)
     }
+
   }
   // let navigate=useNavigate()
   return (
     <>
+      <Modal show={popup} onHide={hideModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Invalid User </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Invalid Email or Password </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={hideModal}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={hideModal}>
+            Save Changes
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
       <Container>
         <h1 className="shadow-sm-text-success mt-5 p-3 text-center rounded">LOGIN FORM</h1>
         <Row className="mt-5">
