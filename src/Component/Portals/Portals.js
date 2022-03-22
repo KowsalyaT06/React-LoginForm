@@ -7,10 +7,11 @@ function Portals(){
     console.log('ModalOpen',ModalOpen)
      return (
          <>
-        <button onClick={()=>setModalOpen(true)}>Open</button>
+         <p>Hii Welcome to this page Click Me to Get a suprise message!!</p>
+        <button onClick={()=>setModalOpen(true)}>Open Me</button>
         <Modal isOpen={ModalOpen}
         onClose={()=>setModalOpen(false)}
-        message='Hii Welcome '></Modal>
+        message='Hii Welcome to this Page!! Enjoy reading React-Portals '></Modal>
         </>
      )
 }

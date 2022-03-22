@@ -1,7 +1,7 @@
-import React, { Children } from "react";
+// import React, { Children } from "react";
 import { createPortal } from "react-dom";
 import './Modal.css';
-const Modal = ({ isOpen, Children, message, onClose }) => {
+const Modal = ({ isOpen, message, onClose }) => {
     if (!isOpen) {
         return null;
     }
