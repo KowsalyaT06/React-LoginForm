@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ReactDOM } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import './Login.css'
+import style from './Login.module.css'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
@@ -50,6 +50,7 @@ function Login() {
   // let navigate=useNavigate()
   return (
     <>
+    
       <Modal show={popup} onHide={hideModal}>
         <Modal.Header closeButton>
           <Modal.Title>Invalid User </Modal.Title>
@@ -64,7 +65,9 @@ function Login() {
           </Button>
         </Modal.Footer> */}
       </Modal>
+      
       <Container>
+      <div className={style.Full}>
         <h1 className="shadow-sm-text-success mt-5 p-3 text-center rounded">LOGIN FORM</h1>
         <Row className="mt-5">
           <Col lg={5} md={6} sm={12} className="p-5 m-auto shadow-sm rounded-lg">
@@ -110,7 +113,9 @@ function Login() {
             {/* <Link to="/Home">Home</Link> */}
           </Col>
         </Row>
+        </div>
       </Container>
+     
     </>
   );
 

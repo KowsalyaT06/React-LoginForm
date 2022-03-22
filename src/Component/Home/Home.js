@@ -9,9 +9,14 @@ import './Home.css';
 const Home = () => {
     const [userData, setUserData] = useState('');
     const [change, setChange] = useState([]);
-    // let User = JSON.parse(localStorage.getItem('datas'))
-    // console.log(User)
 
+    // let User = JSON.parse(localStorage.getItem('datas'))
+    // // console.log(User)
+    // let navigate = Navigate();
+    // function Logout() {
+    //     localStorage.clear();
+    //     navigate('/Login')
+    // }
     useEffect(() => {
         let Users = localStorage.getItem('currents')
         let userData = JSON.parse(Users)
@@ -22,18 +27,21 @@ const Home = () => {
         setChange(change)
 
     }, []);
-    // const navigate = Navigate();
-    // function Logout() {
+
+
     //     localStorage.clear();
     //     navigate.push('/Login')
     // }
+
     return (
 
         <>
-            <Navbar bg="dark" variant="dark">
-                <Container>
+           
+           
+                <Navbar bg="dark" variant="dark">
+                <Container >
                     <Navbar.Brand href="#home">Welcome</Navbar.Brand>
-                    <Nav className="me-auto">
+                    <Nav className="mr-auto">
                         <Nav.Link href="/Login">Login</Nav.Link>
                         <Nav.Link href="/">Signup</Nav.Link>
 
@@ -43,8 +51,9 @@ const Home = () => {
                             <NavDropdown.Item>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                </Container>
-            </Navbar>
+                    </Container>
+                </Navbar>
+            
             <div className="wel">
                 <h1>Welcome</h1>
             </div>
@@ -78,6 +87,7 @@ const Home = () => {
 
                 </tbody>
             </Table>
+
         </>
     );
 }

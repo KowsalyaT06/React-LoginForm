@@ -2,7 +2,9 @@ import { Grid, Paper, TextField, Button } from '@mui/material';
 import { Navigate, useNavigate } from "react-router-dom";
 import { validEmail, validPassword } from "./Emailvalidate";
 import React, { useState } from "react";
-import Popup from './Popup'
+// import MediaQuery from './MediaQuery';
+import classes from './Register.module.css';
+
 
 
 
@@ -51,43 +53,44 @@ const Form = () => {
     }
     return (
         <>
+            <div >
+                <Grid align='center'>
+                    < Paper  elevation={6} style={{ padding: '30px 20px', width: 300, margin: '20px auto' }
+                    }>
 
-            <Grid align='center'>
-                < Paper elevation={6} style={{ padding: '30px 20px', width: 300, margin: '20px auto', backgroundColor: 'whitesmoke' }
-                }>
 
+                        <h2>Sign Up</h2>
 
-                    <h2>Sign Up</h2>
+                        <form className={classes.full}>
+                            {/* //fname */}
+                            <TextField label="First Name" variant="standard" name='firstname' placeholder='Enter your Name' value={inputs.firstname} onChange={handleChange} />
 
-                    <form >
-                        {/* //fname */}
-                        <TextField label="First Name" variant="standard" name='firstname' placeholder='Enter your Name' value={inputs.firstname} onChange={handleChange} />
+                            {/* Lname */}
+                            <TextField label="Last Name" variant="standard" name='Lastname' placeholder='Enter you last Name' value={inputs.Lastname} onChange={handleChange} />
 
-                        {/* Lname */}
-                        <TextField label="Last Name" variant="standard" name='Lastname' placeholder='Enter you last Name' value={inputs.Lastname} onChange={handleChange} />
+                            {/* mobile */}
+                            <TextField label="Phone Number" variant="standard" placeholder='Enter your phone number' value={inputs.Mobile} name='Mobile' onChange={handleChange} />
 
-                        {/* mobile */}
-                        <TextField label="Phone Number" variant="standard" placeholder='Enter your phone number' value={inputs.Mobile} name='Mobile' onChange={handleChange} />
+                            {/* email */}
+                            <TextField label="Email" type='email' value={inputs.email} placeholder='abc@g.com' variant="standard" name='email' onChange={handleChange} />
+                            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
-                        {/* email */}
-                        <TextField label="Email" type='email' value={inputs.email} placeholder='abc@g.com' variant="standard" name='email' onChange={handleChange} />
-                        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+                            {/* password */}
+                            <TextField label="Password" type='password' name='password' variant="standard" value={inputs.password} placeholder='Enter your password' onChange={handleChange} />
+                            {errorPass && <div style={{ color: 'red' }}>{errorPass}</div>}
 
-                        {/* password */}
-                        <TextField label="Password" type='password' name='password' variant="standard" value={inputs.password} placeholder='Enter your password' onChange={handleChange} />
-                        {errorPass && <div style={{ color: 'red' }}>{errorPass}</div>}
+                            {/* confirmPass */}
+                            <TextField type='password' label="Confirm Password" name='confirmpassword' variant="standard" placeholder='Enter your confirm password' value={inputs.confirmpassword} onChange={handleChange} />
+                            {errorconfirmPass && <div style={{ color: 'red' }}>{errorconfirmPass}</div>}
 
-                        {/* confirmPass */}
-                        <TextField type='password' label="Confirm Password" name='confirmpassword' variant="standard" placeholder='Enter your confirm password' value={inputs.confirmpassword} onChange={handleChange} />
-                        {errorconfirmPass && <div style={{ color: 'red' }}>{errorconfirmPass}</div>}
+                            <Button type='submit' variant='contained' color='primary' onClick={submit} style={{ margin: '10px' }}>submit</Button>
 
-                        <Button type='submit' variant='contained' color='primary' onClick={submit} style={{ margin: '10px' }}>submit</Button>
+                        </form>
 
-                    </form>
-
-                </Paper >
-            </Grid >
-            <Popup />
+                    </Paper >
+                </Grid >
+            </div>
+            {/* <MediaQuery/> */}
         </>
     );
 }

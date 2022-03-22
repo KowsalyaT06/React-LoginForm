@@ -1,0 +1,14 @@
+
+body{
+    background-color:lavenderblush;
+}
+@media only screen and (max-width: 900px) {
+   body {
+      background-color:lightpink;
+    }
+    h2{
+        font-size: 50px;
+    }
+
+  }
+  
