@@ -6,11 +6,12 @@ import { BrowserRouter } from "react-router-dom";
 import App from './App'
 import './App.css';
 import reportWebVitals from './reportWebVitals';
-
+import Portals from './Component/Portals/Portals'
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <Portals/>
     {/* <Parent/> */}
 
   </React.StrictMode>,
