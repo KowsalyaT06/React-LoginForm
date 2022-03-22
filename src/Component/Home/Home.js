@@ -38,7 +38,7 @@ const Home = () => {
         <>
            
            
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="dark" variant="dark" expand='lg'>
                 <Container >
                     <Navbar.Brand href="#home">Welcome</Navbar.Brand>
                     <Nav className="mr-auto">
