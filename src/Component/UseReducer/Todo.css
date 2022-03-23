@@ -1,0 +1,21 @@
+.todo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 15px;
+}
+.todo__buttons {
+    
+  }
+ .todo__delete {
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background: orange;
+    color: #112;
+    padding: 9px 15px;
+    transition: all 0.1s ease;
+    cursor: pointer;
+    margin: 5px 15px;
+
+  }

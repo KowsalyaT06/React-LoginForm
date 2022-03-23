@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from "react-router-dom";
 // import Parent from './ParentChild/Parent';
-import App from './App'
-import './App.css';
+// import App from './App'
+// import './App.css';
+import Main from './Component/UseReducer/Main'
 import reportWebVitals from './reportWebVitals';
-import Portals from './Component/Portals/Portals'
+// import Portals from './Component/Portals/Portals'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <Portals/>
+    {/* <App /> */}
+    {/* <Portals/> */}
     {/* <Parent/> */}
-
+    <Main />
   </React.StrictMode>,
   document.getElementById('root')
 );
