@@ -3,8 +3,8 @@ import { Navbar, NavDropdown } from "react-bootstrap";
 import { Nav, Table } from "react-bootstrap";
 
 import { Container } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
-import './Home.css';
+import { navigate, useNavigate } from "react-router-dom";
+import classs from'./Home.module.css';
 
 const Home = () => {
     const [userData, setUserData] = useState('');
@@ -12,23 +12,25 @@ const Home = () => {
 
     // let User = JSON.parse(localStorage.getItem('datas'))
     // // console.log(User)
-    // let navigate = Navigate();
+
     // function Logout() {
     //     localStorage.clear();
     //     navigate('/Login')
     // }
     useEffect(() => {
-        let Users = localStorage.getItem('currents')
-        let userData = JSON.parse(Users)
-        setUserData(userData);
-
         let showData = localStorage.getItem('datas')
         let change = JSON.parse(showData)
         setChange(change)
 
     }, []);
+    let Users = localStorage.getItem('currents')
+    let userDatas = JSON.parse(Users)
 
-
+    let navigate = useNavigate();
+    function Logout() {
+        localStorage.removeItem('currents')
+        navigate('/Login')
+    }
     //     localStorage.clear();
     //     navigate.push('/Login')
     // }
@@ -36,9 +38,9 @@ const Home = () => {
     return (
 
         <>
-           
-           
-                <Navbar bg="dark" variant="dark" expand='lg'>
+
+
+            {/* <Navbar bg="dark" variant="dark" expand='lg'>
                 <Container >
                     <Navbar.Brand href="#home">Welcome</Navbar.Brand>
                     <Nav className="mr-auto">
@@ -47,13 +49,33 @@ const Home = () => {
 
                     </Nav>
                     <Nav>
-                        <NavDropdown title={userData.firstname}>
-                            <NavDropdown.Item>Logout</NavDropdown.Item>
+                        <NavDropdown title={userDatas.firstname}>
+                            <NavDropdown.Item onClick={Logout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                </Container>
+            </Navbar> */}
+
+            <div className={classs.head}>
+                <Navbar bg="success" expand="lg">
+                    <Container>
+                        <Navbar.Brand className="brand">HOME</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto">
+                                <Nav.Link href="#home">Home</Nav.Link>
+                                <Nav.Link href="#link">Link</Nav.Link>
+                            </Nav>
+                            <Nav>
+                                <NavDropdown title={userDatas.firstname} className='drop'>
+                                    <NavDropdown.Item onClick={Logout}>Logout</NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                        </Navbar.Collapse>
                     </Container>
                 </Navbar>
-            
+            </div>
+
             <div className="wel">
                 <h1>Welcome</h1>
             </div>

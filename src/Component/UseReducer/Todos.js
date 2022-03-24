@@ -5,8 +5,9 @@ import './Todos.css';
 
 export const Actions = {
     Add: 'addTodo',
-    Toggle: 'toggletodo',
-    Delete: 'deleteTodo'
+    // Toggle: 'toggletodo',
+    Delete: 'deleteTodo',
+    Edit: 'editTodo'
 }
 
 function reducer(todos, action) {
@@ -14,14 +15,16 @@ function reducer(todos, action) {
         case Actions.Add:
             return [...todos, newTodo(action.payload.name)]
 
-        case Actions.toggletodo:
-            return todos.map(todo => {
-                if (todo.id === action.payload.id) {
-                    return { ...todo, complete: !todo.complete }
-                }
-                return todo
-            })
-
+        // case Actions.toggletodo:
+        //     return todos.map(todo => {
+        //         if (todo.id === action.payload.id) {
+        //             return { ...todo, complete: !todo.complete }
+        //         }
+        //         return todo
+        //     })
+case Actions.Edit:
+    console.log()
+    return todos
         case Actions.Delete:
             return todos.filter(todo => todo.id !== action.payload.id)
         default:
@@ -32,6 +35,7 @@ function reducer(todos, action) {
 function newTodo(name) {
     return { id: Date.now(), name: name, complete: false }
 }
+
 function Todos() {
     const [todos, dispatch] = useReducer(reducer, [])
     const [name, setName] = useState('')
@@ -49,19 +53,20 @@ function Todos() {
                     <h2>MY APP</h2>
                     <div className="todos__forms">
                         <form className="todos__form" onSubmit={handleSubmit} >
-                            <input className="todos__input" value={name} placeholder="Add todo" onChange={e => setName(e.target.value)} />
+                            <input className="todos__input" value={name} placeholder="Add List" onChange={e => setName(e.target.value)} />
                         </form>
                         {/* {todos.map(todo => {
                             return <Todo key={todo.id} todo={todo} dispatch={dispatch} />
                         })} */}
+                       
                         <button className='todos__add__btn' onClick={handleSubmit}>
                             CREATE
                         </button>
 
                     </div>
-                    {todos && todos[0]?.name}
+                    {/* {todos && todos[0]?.name} */}
                     <div className="todos__todo">
-                        {todos.length!==0 && (todos.map(todo => {
+                        { (todos.map(todo => {
                             return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} />
                         }))}
                     </div>

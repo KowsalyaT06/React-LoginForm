@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from "react-router-dom";
 // import Parent from './ParentChild/Parent';
-// import App from './App'
+import App from './App'
 // import './App.css';
 import Main from './Component/UseReducer/Main'
 import reportWebVitals from './reportWebVitals';
@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     {/* <Portals/> */}
     {/* <Parent/> */}
     <Main />

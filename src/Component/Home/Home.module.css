@@ -1,0 +1,17 @@
+h1{ 
+ text-align: center;
+
+}
+
+@media only screen and (max-width:500px) {
+ 
+ .wel h1{
+        text-align: center;
+       
+   } 
+  /* body{
+      width: 100%;
+  } */
+
+   
+}

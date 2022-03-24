@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { ReactDOM } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import style from './Login.module.css'
-
+import { createPortal } from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row, Button, Form } from "react-bootstrap";
-import { inputClasses } from "@mui/material";
 import { Modal } from 'react-bootstrap';
+///import { createPortal } from "react-dom";
 // import { useNavigate,Link } from "react-router-dom";
 function Login() {
   let navigate = useNavigate()
@@ -24,10 +23,21 @@ function Login() {
   const hideModal = () => {
     setPopup(false);
   }
+  const [modal, setmodal] = useState(false);
+  const isOpen = () => {
+    setmodal(true);
+   
+  }
+  const isclose = () => {
+    setmodal(false);
+  }
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value, })
   }
 
+const Open = () =>{
+  navigate("/Home")
+}
 
   const formSubmitter = (e) => {
     e.preventDefault();
@@ -37,36 +47,50 @@ function Login() {
     let current = newDetails.find((val) => val.email === input.email && val.password === input.password)
     console.log(current)
     if (current) {
-      alert('Successfully Login')
+      isOpen()
+   
       localStorage.setItem('currents', JSON.stringify(current))
-      navigate("/Home")
 
     }
     else {
-      setPopup(true)
+      showModal(true)
     }
 
   }
+
   // let navigate=useNavigate()
   return (
-    <>
-    
-      <Modal show={popup} onHide={hideModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Invalid User </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Invalid Email or Password </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={hideModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={hideModal}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
-      </Modal>
-      
-      <Container>
+
+    < Container >
+      {createPortal(
+        <>
+
+          <Modal show={popup} onHide={hideModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Invalid User </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Invalid Email or Password </Modal.Body>
+
+          </Modal>
+        </>,
+        document.getElementById('modal'))}
+      {createPortal(
+        <>
+
+          <Modal show={modal} onHide={isclose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Success Message </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Successfully Login </Modal.Body>
+
+            <Modal.Footer>
+             
+              <Button variant="primary" onClick={Open}>Continue</Button>
+            </Modal.Footer>
+          </Modal>
+
+        </>,
+        document.getElementById('modal'))}
       <div className={style.Full}>
         <h1 className="mt-5 p-3 text-center rounded">LOGIN FORM</h1>
         <Row className="mt-5">
@@ -105,7 +129,7 @@ function Login() {
 
               <div className="d-grid gap-2">
                 <Button variant="primary" type="submit" size="lg" >
-                  Continue
+                LOGIN
                 </Button>
               </div>
 
@@ -113,12 +137,11 @@ function Login() {
             {/* <Link to="/Home">Home</Link> */}
           </Col>
         </Row>
-        </div>
-      </Container>
-     
-    </>
+      </div>
+    </Container >
+
+
   );
 
 };
-
 export default Login
