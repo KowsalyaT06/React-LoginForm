@@ -10,7 +10,10 @@ export const Actions = {
     Edit: 'editTodo'
 }
 
+
+
 function reducer(todos, action) {
+   
     switch (action.type) {
         case Actions.Add:
             console.log('new', action)
@@ -37,7 +40,11 @@ function reducer(todos, action) {
         default:
             return todos
     }
+   
 }
+
+   
+
 
 function newTodo(name) {
     return { id: Date.now(), name: name, complete: false }
@@ -46,6 +53,11 @@ function newTodo(name) {
 function Todos() {
     const [todos, dispatch] = useReducer(reducer, [])
     const [name, setName] = useState('')
+    const[edit,setEdit]=useState(false)
+    const [editData,seteditData]=useState({})
+    useEffect(()=>{
+        dispatch({ type: Actions.Edit, payload: editData })
+    },[edit])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -56,6 +68,8 @@ function Todos() {
     const handleEdit = (data) => {
         console.log("i am in todos", data)
         dispatch({ type: Actions.Edit, payload: data })
+        seteditData(data)
+        setEdit(true)
     }
 
 
