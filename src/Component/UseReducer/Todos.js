@@ -13,7 +13,8 @@ export const Actions = {
 function reducer(todos, action) {
     switch (action.type) {
         case Actions.Add:
-            return [...todos, newTodo(action.payload.name)]
+            console.log('new', todos)
+            return [...todos, newTodo(action.payload)]
 
         // case Actions.toggletodo:
         //     return todos.map(todo => {
@@ -22,9 +23,14 @@ function reducer(todos, action) {
         //         }
         //         return todo
         //     })
-case Actions.Edit:
-    console.log()
-    return todos
+        case Actions.Edit:
+            console.log('actions', action.payload)
+            console.log('todos', todos)
+            let check = todos.findIndex((dat) => dat.id === action.payload.id)
+            console.log('ans', check)
+            todos.splice(check, 1, action.payload.name)
+            return todos
+
         case Actions.Delete:
             return todos.filter(todo => todo.id !== action.payload.id)
         default:
@@ -42,9 +48,17 @@ function Todos() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch({ type: Actions.Add, payload: { name: name } })
+        dispatch({ type: Actions.Add, payload: name })
         setName('')
     }
+
+    const handleEdit = (data) => {
+        console.log("original page", data)
+        dispatch({ type: Actions.Edit, payload: data })
+    }
+
+
+    console.log('print', todos)
 
     return (
         <>
@@ -58,22 +72,21 @@ function Todos() {
                         {/* {todos.map(todo => {
                             return <Todo key={todo.id} todo={todo} dispatch={dispatch} />
                         })} */}
-                       
+
                         <button className='todos__add__btn' onClick={handleSubmit}>
                             CREATE
                         </button>
 
                     </div>
-                    {/* {todos && todos[0]?.name} */}
                     <div className="todos__todo">
-                        { (todos.map(todo => {
-                            return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} />
+                        {(todos.map(todo => {
+                            return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} sendToReducer={() => handleEdit(todo)} />
                         }))}
                     </div>
                 </div>
             </div>
 
-            {/* <Todo /> */}
+
 
         </>
 
