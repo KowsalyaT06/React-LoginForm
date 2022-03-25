@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import React from "react";
 import Todo from './Todo';
 import './Todos.css';
@@ -13,7 +13,7 @@ export const Actions = {
 function reducer(todos, action) {
     switch (action.type) {
         case Actions.Add:
-            console.log('new', todos)
+            console.log('new', action)
             return [...todos, newTodo(action.payload)]
 
         // case Actions.toggletodo:
@@ -26,9 +26,10 @@ function reducer(todos, action) {
         case Actions.Edit:
             console.log('actions', action.payload)
             console.log('todos', todos)
-            let check = todos.findIndex((dat) => dat.id === action.payload.id)
-            console.log('ans', check)
-            todos.splice(check, 1, action.payload.name)
+            let check = todos.findIndex((dat) => dat.id===action.payload.id)
+            //console.log('ans', check)
+            todos.splice(check, 1, action.payload)
+            console.log("change",todos)
             return todos
 
         case Actions.Delete:
@@ -53,7 +54,7 @@ function Todos() {
     }
 
     const handleEdit = (data) => {
-        console.log("original page", data)
+        console.log("i am in todos", data)
         dispatch({ type: Actions.Edit, payload: data })
     }
 
@@ -80,7 +81,7 @@ function Todos() {
                     </div>
                     <div className="todos__todo">
                         {(todos.map(todo => {
-                            return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} sendToReducer={() => handleEdit(todo)} />
+                            return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} sendToReducer={handleEdit} />
                         }))}
                     </div>
                 </div>

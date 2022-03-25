@@ -27,6 +27,7 @@ function Todo({ todoss, Key, dispatch,sendToReducer }) {
         setModalOpen(false);
     }
        const update=(datas)=>{
+           console.log("i am in todo",datas)
            sendToReducer(datas)
        }
     return (

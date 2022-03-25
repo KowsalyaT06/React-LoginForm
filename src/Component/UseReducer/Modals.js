@@ -17,6 +17,9 @@ const Modals = (props) => {
         props.sending(dummy)
         // console.log(dispatch)
     }
+    const handleChange=(e)=>{
+        setDatas({...datas,[e.target.name]:e.target.value})
+    }
     return (
         <Modal.Dialog>
             <Modal show={props.show} onHide={props.close}>
@@ -24,7 +27,7 @@ const Modals = (props) => {
                     <Modal.Title>Todo List</Modal.Title>
                 </Modal.Header>
                 <Form.Label>Edit List</Form.Label>
-                <Form.Control type="text" placeholder="Enter List" value={datas.name} onChange={e => setDatas(e.target.value)}></Form.Control>
+                <Form.Control type="text" placeholder="Enter List" name="name" value={datas.name} onChange={handleChange}></Form.Control>
 
                 <Modal.Footer>
 
