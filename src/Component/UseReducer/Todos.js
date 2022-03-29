@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, createContext} from "react";
 import React from "react";
 import Todo from './Todo';
 import './Todos.css';
@@ -43,18 +43,16 @@ function reducer(todos, action) {
    
 }
 
-   
-
-
-function newTodo(name) {
+   function newTodo(name) {
     return { id: Date.now(), name: name, complete: false }
 }
-
+export const Context = createContext({});
 function Todos() {
     const [todos, dispatch] = useReducer(reducer, [])
     const [name, setName] = useState('')
     const[edit,setEdit]=useState(false)
     const [editData,seteditData]=useState({})
+   
     useEffect(()=>{
         dispatch({ type: Actions.Edit, payload: editData })
     },[edit])
@@ -67,7 +65,7 @@ function Todos() {
 
     const handleEdit = (data) => {
         console.log("i am in todos", data)
-        dispatch({ type: Actions.Edit, payload: data })
+         dispatch({ type: Actions.Edit, payload: data })
         seteditData(data)
         setEdit(true)
     }
@@ -77,6 +75,7 @@ function Todos() {
 
     return (
         <>
+      
             <div className="todos">
                 <div className='todos__content'>
                     <h2>MY APP</h2>
@@ -97,11 +96,12 @@ function Todos() {
                         {(todos.map(todo => {
                             return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} sendToReducer={handleEdit} />
                         }))}
+                        
                     </div>
                 </div>
             </div>
 
-
+           
 
         </>
 

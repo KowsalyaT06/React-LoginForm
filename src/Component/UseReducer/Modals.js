@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
+import {contextsss} from "./Todo";
 
 const Modals = (props) => {
     console.log('jkdhsuf',props.send)
     const [datas, setDatas] = useState({
         name:props.send.name
     })
+    const Access = useContext(contextsss);
     const handleSave = (e) => {
         e.preventDefault()
         let dummy={
@@ -22,7 +24,7 @@ const Modals = (props) => {
     }
     return (
         <Modal.Dialog>
-            <Modal show={props.show} onHide={props.close}>
+            <Modal show={Access.show} onHide={props.close}>
                 <Modal.Header closeButton>
                     <Modal.Title>Todo List</Modal.Title>
                 </Modal.Header>
