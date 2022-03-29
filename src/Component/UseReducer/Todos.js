@@ -51,11 +51,11 @@ function Todos() {
     const [todos, dispatch] = useReducer(reducer, [])
     const [name, setName] = useState('')
     const[edit,setEdit]=useState(false)
-    const [editData,seteditData]=useState({})
+    // const [editData,seteditData]=useState({})
    
-    useEffect(()=>{
-        dispatch({ type: Actions.Edit, payload: editData })
-    },[edit])
+    // useEffect(()=>{
+    //     dispatch({ type: Actions.Edit, payload: edit })
+    // },[edit])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -66,7 +66,7 @@ function Todos() {
     const handleEdit = (data) => {
         console.log("i am in todos", data)
          dispatch({ type: Actions.Edit, payload: data })
-        seteditData(data)
+        // seteditData(data)
         setEdit(true)
     }
 

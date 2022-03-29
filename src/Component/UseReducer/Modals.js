@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import {contextsss} from "./Todo";
@@ -9,12 +9,20 @@ const Modals = (props) => {
         name:props.send.name
     })
     const Access = useContext(contextsss);
+    // useEffect(()=>{
+    //     if(datas.name){
+    //             setDatas(datas.name)
+    //         }
+            
+    // },[datas.name])
     const handleSave = (e) => {
         e.preventDefault()
         let dummy={
             id:props.send.id,
             name:datas.name
         }
+
+       
         console.log("Modals",dummy)
         props.sending(dummy)
         // console.log(dispatch)
