@@ -21,8 +21,7 @@ const Post = () => {
     const [data, setData] = useState({ firstname: "", Lastname: "", email: '' })
 
     const handleChange = (e) => {
-
-        setData({ ...data, [e.target.name]: e.target.value })
+setData({ ...data, [e.target.name]: e.target.value })
     }
 
 let navigate=useNavigate()
@@ -34,7 +33,7 @@ let navigate=useNavigate()
                 console.log('add', data)
             })
             .catch(error => {
-                // dispatch({ type: 'Fetch_Error' })
+                
                 console.log(error)
             })
 navigate('/Api')
