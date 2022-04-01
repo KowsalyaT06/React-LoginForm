@@ -5,15 +5,6 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 
-
-// // const reducer = (state, action) => {
-// //     switch (action.type) {
-// //         case Action.Edit:
-// //             let put = state.findIndex((update) => update.id === action.payload.id)
-// //             state.splice(put, 1, action.payload)
-// //             return state
-//     }
-// }
 const Edit = () => {
     const [states, dispatch] = useReducer('')
     const [send, setSend] = useState({})
