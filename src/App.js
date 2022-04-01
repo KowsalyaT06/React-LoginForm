@@ -6,6 +6,8 @@ import Form from './Component/Signup/Form'
 import Home from './Component/Home/Home';
 import Main from './Component/UseReducer/Main';
 import Datafetch from './Component/Api/Datafetch';
+import Post from "./Component/Api/Post";
+import Edit from './Component/Api/Edit';
 const App =()=>{
   return(
     <div>
@@ -18,6 +20,8 @@ const App =()=>{
     <Route  path="/Home" element={<Home/>}/> 
     <Route path='/Main' element={<Main/>}/>
     <Route path="/Api" element={<Datafetch/>}/>
+    <Route path='/Post' element={<Post/>}/>
+    <Route path="/Edit/:id" element={<Edit/>}/>
     </Routes>
       </Router>
       </div>
