@@ -10,7 +10,7 @@ import Post from "./Component/Api/Post";
 import Edit from './Component/Api/Edit';
 import Homes from "./Component/HOC/Homes";
 import Abouts from "./Component/HOC/Abouts";
-import Hoc from "./Component/HOC/Hoc";
+
 const App =()=>{
   return(
     <div>
@@ -27,7 +27,7 @@ const App =()=>{
     <Route path="/Edit/:id" element={<Edit/>}/>
     <Route path='/Homes' element={<Homes/>}/>
     <Route path='/Abouts' element={<Abouts/>}/>
-    <Route path="Hoc" element={<Hoc/>}/>
+    
     </Routes>
       </Router>
       </div>
