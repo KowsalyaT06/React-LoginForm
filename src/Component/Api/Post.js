@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useReducer,useState } from "react";
 import axios from "axios";
-import './Post.css';
+// import './Post.css';
 import { useNavigate } from "react-router-dom";
 
 const Action = {

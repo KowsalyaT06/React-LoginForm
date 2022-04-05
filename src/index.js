@@ -8,10 +8,18 @@ import App from './App'
 
 import reportWebVitals from './reportWebVitals';
 // import Portals from './Component/Portals/Portals'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import {Provider} from 'react-redux';
+import Store from './Component/Redux-Ui/Redux/Store/Store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+  <Provider store={Store}>
+  <App />
+  </Provider>
+   
+    
     {/* <Portals/> */}
     {/* <Parent/> */}
    

@@ -1,6 +1,6 @@
 import React from "react";
 import { Actions } from "./Todos";
-import './Todo.css'
+// import './Todo.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, createContext } from "react";
 import { Button } from "react-bootstrap";

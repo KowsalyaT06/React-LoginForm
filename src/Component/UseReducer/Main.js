@@ -1,5 +1,5 @@
 import React from "react";
-import './Main.css';
+// import './Main.css';
 import Todo from './Todos'
 const Main = ()=>{
     return(

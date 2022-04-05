@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState, createContext} from "react";
 import React from "react";
 import Todo from './Todo';
-import './Todos.css';
+// import './Todos.css';
 
 export const Actions = {
     Add: 'addTodo',
