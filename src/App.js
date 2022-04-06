@@ -11,7 +11,7 @@ import Edit from './Component/Api/Edit';
 import Homes from "./Component/HOC/Homes";
 import Abouts from "./Component/HOC/Abouts";
 import Navbar from "./Component/Redux-Ui/Navbar/Navbar";
-
+import Details from './Component/Redux-Ui/Products/Details'
 const App =()=>{
   return(
     <div>
@@ -29,7 +29,7 @@ const App =()=>{
     <Route path='/Homes' element={<Homes/>}/>
     <Route path='/Abouts' element={<Abouts/>}/>
     <Route path='/Nav' element={<Navbar/>}/>
-    
+    <Route path='/Details' element={<Details/>}/>
     </Routes>
       </Router>
       </div>

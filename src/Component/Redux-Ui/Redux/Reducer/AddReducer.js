@@ -4,12 +4,13 @@ const intial ={
     products:[]
 }
 
-export const ReducerProduct=(state=intial,action) => {
+export const AddReducer=(state=intial,action) => {
     switch(action.type){
-        case ActionTypes.SET_PRODUCT:
+        case ActionTypes.ADD_PRODUCT:
             return {...state, products:action.payload};
             default:
                 return state;
     }
 }
+
 

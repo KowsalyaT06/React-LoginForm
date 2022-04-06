@@ -1,7 +1,12 @@
 import React from "react";
 import Homee from '../Homee';
 import Products from "../Products/Products";
+import { Navigate, useNavigate } from "react-router-dom";
 const Navbar = () => {
+    let navigate = useNavigate()
+    const handlego = () =>{
+        navigate('/Details')
+    }
     return (
         <>
             <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 shadow-sm">
@@ -28,7 +33,7 @@ const Navbar = () => {
                       <div className="Button">
                          <a href="" className="btn btn-outline-dark">Login</a>
                          <a href="" className="btn btn-outline-dark ms-2">Register</a>
-                         <a href="" className="btn btn-outline-dark ms-2">
+                         <a href="" className="btn btn-outline-dark ms-2" onClick={handlego}>
                          <i className="fa fa-shopping-cart me-1"></i>Cart (0)</a>
                           </div>
                     </div>
