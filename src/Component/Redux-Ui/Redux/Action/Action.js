@@ -42,29 +42,17 @@ export const deleteProducts = (product) => {
 
 }
 
-export const geteditProducts = (id) =>{
-    axios.get(`http://localhost:3006/products/${id}`)
-    .then(response => {
-        console.log(response, 'hii')
-     //   setSend(response.data)
 
-    })
-    .catch(error => {
-        
-        console.log(error)
-    })
-}
-
-export const editProducts = (data) => {
+export const editProducts = (add,id) => {
     return async (dispatch) => {
-        const response = await axios.post('http://localhost:3006/products', data)
+        const response = await axios.put(`http://localhost:3006/products/${id}`,add)
             .catch((error) => {
                 console.log('error', error)
             })
         dispatch({
-            type: ActionTypes.ADD_PRODUCT,
-            payload: response.data
+            type: ActionTypes.EDIT_PRODUCT,
+            payload: add
         })
-        console.log('res', response.data);
+        console.log('kfsdj', response.add);
     }
 }

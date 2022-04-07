@@ -1,7 +1,10 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-
+import axios from "axios";
+import {useParams} from 'react-router-dom'
+import { Navigate, useNavigate } from "react-router-dom";
+import { editProducts } from "../Redux/Action/Action";
 const EditPage = (products) => {
     // const [data, setData] = useState({ title: "", Price: "", Url: '', Content: '' })
     const [send, setSend] = useState({})
@@ -18,33 +21,58 @@ const EditPage = (products) => {
     const handleChange = (e) => {
         setAdd({ ...add, [e.target.name]: e.target.value })
     }
-useEffect(()=>{
-    let check = products.findIndex((dat) => dat.id===action.payload.id)
-    products.splice(check, 1, action.payload)
-})
+
+    let { id } = useParams()
+    console.log(id, 'param')
+    useEffect(() => {
+
+        axios.get(`http://localhost:3006/products/${id}`)
+            .then(response => {
+                console.log(response, 'hii')
+                setSend(response.data)
+
+            })
+            .catch(error => {
+
+                console.log(error)
+            })
+    }, [])
+
+    useEffect(() => {
+        if (send) {
+            setAdd(send)
+        }
+    }, [send])
+
+    // let check = products.findIndex((dat) => dat.id === action.payload.id)
+    // products.splice(check, 1, action.payload)
+    let navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
+        dispatch(editProducts(add,id))
+      
+        navigate('/Nav')
     }
-    return(
+    return (
         <>
-        <h1>EDIT PRODUCT DETAILS</h1>
-        <div>
-            <form>
-                <div className="style">
-                    <input placeholder="Add title" name="title" value={add.title} onChange={handleChange} /><br></br>
+            <h1>EDIT PRODUCT DETAILS</h1>
+            <div>
+                <form>
+                    <div className="style">
+                        <input placeholder="Add title" name="title" value={add.title} onChange={handleChange} /><br></br>
 
-                    <input placeholder="Add price" name="Price" value={add.Price} onChange={handleChange} /><br></br>
+                        <input placeholder="Add price" name="Price" value={add.Price} onChange={handleChange} /><br></br>
 
-                    <input placeholder="Add url" name="Url" value={add.Url} onChange={handleChange} /><br></br>
+                        <input placeholder="Add url" name="Url" value={add.Url} onChange={handleChange} /><br></br>
 
-                    <input placeholder="Add content" name="Content" value={add.Content} onChange={handleChange} />
+                        <input placeholder="Add content" name="Content" value={add.Content} onChange={handleChange} />
+                    </div>
+                </form>
+                <div className="btnnn">
+                    <Button variant="success" size="lg" onClick={handleSubmit}>UPDATE</Button>
                 </div>
-            </form>
-            <div className="btnnn">
-                <Button variant="success" size="lg" onClick={handleSubmit}>UPDATE</Button>
             </div>
-        </div>
-    </>
+        </>
     )
 }
 export default EditPage
