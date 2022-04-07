@@ -1,38 +1,41 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../Redux/Action/Action";
-import { addProducts } from '../Redux/Action/Action';
-import { useNavigate } from "react-router-dom";
+import { setProducts, deleteProducts } from "../Redux/Action/Action";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 const Products = () => {
     const products = useSelector((state) => state.allProducts.products);
     console.log('productssd', products)
     const dispatch = useDispatch();
+    const [deletes, setDelete] = useState(false)
 
 
-    const fetchProducts = async () => {
-        const response = await axios.get('http://localhost:3006/products')
-            .catch((error) => {
-                console.log('error', error)
-            })
-        dispatch(setProducts(response.data))
-        console.log('res', response.data);
-    }
-    let navigate = useNavigate()
-    const handleAdd = () => {
-         navigate('/Details')
-
-    }
     useEffect(() => {
-        fetchProducts();
+        dispatch(setProducts());
     }, []);
     console.log('productss', products)
 
+    //for page refresh
+    useEffect(() => {
+        dispatch(setProducts())
+
+    }, [deletes])
+    let navigate = useNavigate()
     const render = products.map((product) => {
         const { id, title, Price, Url, Content } = product;
 
+        const handleDelete = (e, product) => {
+            e.preventDefault()
+            dispatch(deleteProducts(product));
+            setDelete(true)
+        }
        
+        const handleEdit = (e, product) => {
+            e.preventDefault()
+            navigate(`/EditPage/${product}`)
+        }
         return (
             <>
 
@@ -50,30 +53,20 @@ const Products = () => {
                                 <h5 class="card-title">{title}</h5>
                                 <p class="card-text">{Content}</p>
                                 <h3 className="meta price">{Price}</h3>
-
-                                <a href="#" class="btn btn-primary">Add to Cart</a>
                             </div>
 
 
                         </div>
                     </div>
                 </div>
-
+                <Button variant="primary" onClick={(e) => handleEdit(e, product.id)}>Edit</Button>
+                <Button variant="danger" onClick={(e) => handleDelete(e, product.id)}>Delete</Button>
             </>
         )
     });
     return (
         <>
-            {/* <Row>
-                <Col xs={6}>
-                    <Row>
-                        <Col xs={12} sm={12} md={8} lg={12} xl={12} xxl={12}>
-                        </Col>
 
-                    </Row >
-                </Col>
-            </Row>
- */}
 
             {render}
         </>

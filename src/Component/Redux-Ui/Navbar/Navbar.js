@@ -1,6 +1,7 @@
 import React from "react";
 import Homee from '../Homee';
 import Products from "../Products/Products";
+
 import { Navigate, useNavigate } from "react-router-dom";
 const Navbar = () => {
     let navigate = useNavigate()
@@ -34,7 +35,7 @@ const Navbar = () => {
                          <a href="" className="btn btn-outline-dark">Login</a>
                          <a href="" className="btn btn-outline-dark ms-2">Register</a>
                          <a href="" className="btn btn-outline-dark ms-2" onClick={handlego}>
-                         <i className="fa fa-shopping-cart me-1"></i>Cart (0)</a>
+                       ADD PRODUCT</a>
                           </div>
                     </div>
                 </div>

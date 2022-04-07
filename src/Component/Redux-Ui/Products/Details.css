@@ -1,0 +1,29 @@
+.style{
+    text-align: center;
+  
+  }
+  .style input{
+      padding: 5px;
+      margin: 10px;
+  }
+  .btnnn{
+     color: black;
+     display: flex;
+     justify-content: center;
+  }
+  .add{
+    float: right;
+    
+  }
+  /* @media only screen and (max-width:500px) {
+    .add .btn{
+      position: fixed;
+      right: 0px;
+  
+  }
+  .btn{
+    display: flex;
+    justify-content: center;
+  
+  }
+  } */

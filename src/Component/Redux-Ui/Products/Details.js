@@ -1,69 +1,55 @@
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import './Details.css'
+import { addProducts } from '../Redux/Action/Action'
+import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 // import { Table } from "react-bootstrap";
 // import { addProducts } from '../Redux/Action/Action';
-// import { useDispatch, useSelector } from "react-redux";
-// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
 // import { Button } from "bootstrap";
 
-// const Details = () => {
-//     //     const [title,setTitle] = useState('');
-//     //     const [Content,setContent] = useState('');
+const Details = () => {
+    const [data, setData] = useState({ title: "", Price: "", Url: '', Content: '' })
+    // const productsadd = useSelector((state) => state.addProducts.productsadd);
+    const dispatch = useDispatch();
 
+    const handleChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
+    let navigate = useNavigate()
+    
+  
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispatch(addProducts(data));
 
-//     //     const postData = {
-//     //         title,
-//     //         Content,
-//     //     };
+        navigate('/Nav')
+    }
 
-//     //    const handleSubmit = (e) => {
-//     //        e.preventDefault();
-
-
-//     //    }
-//     const Add = useSelector((state) => state.allProducts.products);
-//     const dispatch = useDispatch();
    
-//     const fetchProducts = async () => {
-//         const response = await axios.post('http://localhost:3006/products')
-//             .catch((error) => {
-//                 console.log('error', error)
-//             })
-//         dispatch(addProducts(response.data))
-//         console.log('responnse', response.data);
-//     }
-//     useEffect(() => {
-//         fetchProducts();
-//     }, []);
-//     return (
-//         <>
-//             <h1>PRODUCT DETAILS</h1>
-//             {/* <div>
-//         <form onSubmit={handleSubmit}>
-//             <div>
-//                 <label>Title</label>
-//                 <div>
-//                     <input type='text' 
-//                     className="border border-gray-500 w-full px-1"
-//                     value={title}
-//                     onChange={(e) => setTitle(e.target.value)}/>
-//                 </div>
-//             </div>
-//         </form>
-//     </div>
-//             <div>
-//                 <label>Content</label>
-//                 <div>
-//                     <textarea className="border border-gray-500 px-1 w-full h-28"
-//                      value={Content}
-//                      onChange={(e) => setContent(e.target.value)}/>
-//                 </div>
-//             </div>
-//             <div>
-//                 <button type="submit" className="px-2 py-1 bg-color-red text-black" >POST</button>
-//             </div>
-//          */}
-//         </>
-//     )
-// }
+    return (
+        <>
+            <h1>PRODUCT DETAILS</h1>
+            <div>
+                <form>
+                    <div className="style">
+                        <input placeholder="Add title" name="title" value={data.title} onChange={handleChange} /><br></br>
 
-// export default Details
+                        <input placeholder="Add price" name="Price" value={data.Price} onChange={handleChange} /><br></br>
+
+                        <input placeholder="Add url" name="Url" value={data.Url} onChange={handleChange} /><br></br>
+
+                        <input placeholder="Add content" name="Content" value={data.Content} onChange={handleChange} />
+                    </div>
+                </form>
+                <div className="btnnn">
+                    <Button variant="success" size="lg" onClick={handleSubmit}>ADD</Button>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Details

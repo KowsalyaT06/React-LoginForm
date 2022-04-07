@@ -1,11 +1,10 @@
-import { useEffect, useReducer, useState, createContext} from "react";
+import { useEffect, useReducer, useState, createContext } from "react";
 import React from "react";
 import Todo from './Todo';
 // import './Todos.css';
 
 export const Actions = {
     Add: 'addTodo',
-    // Toggle: 'toggletodo',
     Delete: 'deleteTodo',
     Edit: 'editTodo'
 }
@@ -13,7 +12,7 @@ export const Actions = {
 
 
 function reducer(todos, action) {
-   
+
     switch (action.type) {
         case Actions.Add:
             console.log('new', action)
@@ -29,10 +28,10 @@ function reducer(todos, action) {
         case Actions.Edit:
             console.log('actions', action.payload)
             console.log('todos', todos)
-            let check = todos.findIndex((dat) => dat.id===action.payload.id)
+            let check = todos.findIndex((dat) => dat.id === action.payload.id)
             //console.log('ans', check)
             todos.splice(check, 1, action.payload)
-            console.log("change",todos)
+            console.log("change", todos)
             return todos
 
         case Actions.Delete:
@@ -40,19 +39,19 @@ function reducer(todos, action) {
         default:
             return todos
     }
-   
+
 }
 
-   function newTodo(name) {
+function newTodo(name) {
     return { id: Date.now(), name: name, complete: false }
 }
 export const Context = createContext({});
 function Todos() {
     const [todos, dispatch] = useReducer(reducer, [])
     const [name, setName] = useState('')
-    const[edit,setEdit]=useState(false)
+    const [edit, setEdit] = useState(false)
     // const [editData,seteditData]=useState({})
-   
+
     // useEffect(()=>{
     //     dispatch({ type: Actions.Edit, payload: edit })
     // },[edit])
@@ -65,7 +64,7 @@ function Todos() {
 
     const handleEdit = (data) => {
         console.log("i am in todos", data)
-         dispatch({ type: Actions.Edit, payload: data })
+        dispatch({ type: Actions.Edit, payload: data })
         // seteditData(data)
         setEdit(true)
     }
@@ -75,7 +74,7 @@ function Todos() {
 
     return (
         <>
-      
+
             <div className="todos">
                 <div className='todos__content'>
                     <h2>MY APP</h2>
@@ -96,12 +95,12 @@ function Todos() {
                         {(todos.map(todo => {
                             return <Todo Key={todo.id} todoss={todo} dispatch={dispatch} sendToReducer={handleEdit} />
                         }))}
-                        
+
                     </div>
                 </div>
             </div>
 
-           
+
 
         </>
 
