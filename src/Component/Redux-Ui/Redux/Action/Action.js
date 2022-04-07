@@ -53,6 +53,6 @@ export const editProducts = (add,id) => {
             type: ActionTypes.EDIT_PRODUCT,
             payload: add
         })
-        console.log('kfsdj', response.add);
+        console.log('kfsdj',add);
     }
 }
