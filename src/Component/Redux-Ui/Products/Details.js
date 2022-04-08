@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { Button } from "bootstrap";
 
 const Details = () => {
+ 
     const [data, setData] = useState({ title: "", Price: "", Url: '', Content: '' })
     // const productsadd = useSelector((state) => state.addProducts.productsadd);
     const dispatch = useDispatch();

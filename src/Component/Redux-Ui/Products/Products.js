@@ -7,7 +7,10 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Products = () => {
     const products = useSelector((state) => state.allProducts.products);
-    console.log('productssd', products)
+    const productsadd = useSelector((state) => state.AddProducts);
+    console.log('productadddd', productsadd)
+  
+    console.log('productset', products)
     const dispatch = useDispatch();
     const [deletes, setDelete] = useState(false)
 
