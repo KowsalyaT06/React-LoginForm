@@ -31,11 +31,11 @@ export const DeleteReducer=(state=intial,action) => {
     }
 }
 
-export const editReducer=(state=intial,action) => {
-    switch(action.type){
-        case ActionTypes.EDIT_PRODUCT:
-            return {...state, products:action.payload};
-            default:
-                return state;
-    }
-}
+// export const editReducer=(state=intial,action) => {
+//     switch(action.type){
+//         case ActionTypes.EDIT_PRODUCT:
+//             return {...state, products:action.payload};
+//             default:
+//                 return state;
+//     }
+// }

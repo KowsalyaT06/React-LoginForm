@@ -6,6 +6,6 @@ const reducers = combineReducers({
     allProducts:ReducerProduct,
     AddProducts:AddReducer,
     DeleteReducer:DeleteReducer,
-    editReducer:editReducer
+    // editReducer:editReducer
 })
 export default reducers;
