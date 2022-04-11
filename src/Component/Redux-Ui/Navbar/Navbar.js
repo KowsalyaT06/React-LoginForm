@@ -1,8 +1,9 @@
+
 import React from "react";
 import Homee from '../Homee';
 import Products from "../Products/Products";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     let navigate = useNavigate()
     const handlego = () =>{
@@ -19,21 +20,19 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <a className="nav-link active" aria-current="page" href="/Login">Login</a>
+                            </li>
+                            
+                            <li className="nav-item">
+                                <a className="nav-link" href="/">Register</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Products</a>
+                                <a className="nav-link" href="/multi">Products</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">About</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Contact</a>
-                            </li>
+
                         </ul>
                       <div className="Button">
-                         <a href="" className="btn btn-outline-dark">Login</a>
-                         <a href="" className="btn btn-outline-dark ms-2">Register</a>
+                       
                          <a href="" className="btn btn-outline-dark ms-2" onClick={handlego}>
                        ADD PRODUCT</a>
                           </div>

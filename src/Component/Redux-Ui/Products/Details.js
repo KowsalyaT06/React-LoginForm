@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import './Details.css'
-import { addProducts } from '../Redux/Action/Action'
-import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
-// import { Table } from "react-bootstrap";
-// import { addProducts } from '../Redux/Action/Action';
-import { useDispatch, useSelector } from "react-redux";
+import { addProducts, } from '../Redux/Action/Action'
 
-// import { Button } from "bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+
 
 const Details = () => {
- 
     const [data, setData] = useState({ title: "", Price: "", Url: '', Content: '' })
-    // const productsadd = useSelector((state) => state.addProducts.productsadd);
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
     let navigate = useNavigate()
-    
-  
-    const handleSubmit = (e) => {
-        e.preventDefault()
+
+    const handleSubmit = () => {
+
         dispatch(addProducts(data));
 
         navigate('/Nav')
     }
 
-   
     return (
         <>
             <h1>PRODUCT DETAILS</h1>

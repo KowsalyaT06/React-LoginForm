@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import axios from "axios";
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
-import { editProducts } from "../Redux/Action/Action";
-const EditPage = () => {
+import { editMultiProducts } from "../Redux/Action/MultiAction";
+const MultiEdit = () => {
     // const [data, setData] = useState({ title: "", Price: "", Url: '', Content: '' })
     const [send, setSend] = useState({})
-    const [add, setAdd] = useState({
+    const [addMulti, setAddMulti] = useState({
 
         title: send.title,
         Price: send.Price,
@@ -19,16 +19,16 @@ const EditPage = () => {
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
-        setAdd({ ...add, [e.target.name]: e.target.value })
+        setAddMulti({ ...addMulti, [e.target.name]: e.target.value })
     }
 
     let { id } = useParams()
     console.log(id, 'param')
     useEffect(() => {
 
-        axios.get(`http://localhost:3006/products/${id}`)
+        axios.get(`http://localhost:3007/Multiproducts/${id}`)
             .then(response => {
-                console.log(response, 'hii')
+                console.log(response, 'Multiedit')
                 setSend(response.data)
 
             })
@@ -40,32 +40,31 @@ const EditPage = () => {
 
     useEffect(() => {
         if (send) {
-            setAdd(send)
+            setAddMulti(send)
         }
     }, [send])
-
-    // let check = products.findIndex((dat) => dat.id === action.payload.id)
-    // products.splice(check, 1, action.payload)
+  
     let navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(editProducts(add,id))
-      
-        navigate('/Nav')
+        dispatch(editMultiProducts(addMulti, id))
+
+        navigate('/multi')
     }
     return (
         <>
-            <h1>EDIT PRODUCT DETAILS</h1>
+           
+            <h1>MULTIEDIT PRODUCT DETAILS</h1>
             <div>
                 <form>
                     <div className="style">
-                        <input placeholder="Add title" name="title" value={add.title} onChange={handleChange} /><br></br>
+                        <input placeholder="Add title" name="title" value={addMulti.title} onChange={handleChange} /><br></br>
 
-                        <input placeholder="Add price" name="Price" value={add.Price} onChange={handleChange} /><br></br>
+                        <input placeholder="Add price" name="Price" value={addMulti.Price} onChange={handleChange} /><br></br>
 
-                        <input placeholder="Add url" name="Url" value={add.Url} onChange={handleChange} /><br></br>
+                        <input placeholder="Add url" name="Url" value={addMulti.Url} onChange={handleChange} /><br></br>
 
-                        <input placeholder="Add content" name="Content" value={add.Content} onChange={handleChange} />
+                        <input placeholder="Add content" name="Content" value={addMulti.Content} onChange={handleChange} />
                     </div>
                 </form>
                 <div className="btnnn">
@@ -75,4 +74,4 @@ const EditPage = () => {
         </>
     )
 }
-export default EditPage
+export default MultiEdit

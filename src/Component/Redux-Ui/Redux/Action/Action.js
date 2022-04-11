@@ -4,18 +4,24 @@ import axios from "axios";
 //GET
 export const setProducts = () => {
     return async (dispatch) => {
+        let response;
         try {
-            let response = await axios.get('http://localhost:3006/products')
-            dispatch({
-                type: ActionTypes.SET_PRODUCT,
-                payload: response.data
-            })
+            response = await axios.get('http://localhost:3006/products')
+
         }
         catch (error) {
             alert('error Page', error)
         }
         finally {
-            console.log('Finally')
+            if (response.data) {
+                dispatch({
+                    type: ActionTypes.SET_PRODUCT,
+                    payload: response.data
+                })
+            }
+            else {
+                console.log('finally')
+            }
         }
     }
 }
@@ -23,22 +29,21 @@ export const setProducts = () => {
 //POST
 export const addProducts = (data) => {
     return async (dispatch) => {
-        try {
-            const response = await axios.post('http://localhost:3006/products', data)
-            dispatch({
-                type: ActionTypes.ADD_PRODUCT,
-                payload: response.data
+        await axios.post('http://localhost:3006/products', data)
+            .then((res) => {
+                dispatch({
+                    type: ActionTypes.ADD_PRODUCT,
+                    payload: res.data
+                });
             })
-        }
-        catch (error) {
-            alert('error while Posting the Product', error)
-        }
-        finally {
-            console.log('Finally')
-        }
-       
+            .catch((error) => {
+                console.log('error while Posting the Product', error)
+            })
+
+
     }
 }
+
 
 export const deleteProducts = (product) => {
     return async (dispatch) => {

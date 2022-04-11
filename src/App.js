@@ -12,7 +12,10 @@ import Homes from "./Component/HOC/Homes";
 import Abouts from "./Component/HOC/Abouts";
 import Navbar from "./Component/Redux-Ui/Navbar/Navbar";
 import Details from './Component/Redux-Ui/Products/Details';
-import EditPage from './Component/Redux-Ui/Products/EditPage' 
+import EditPage from './Component/Redux-Ui/Products/EditPage' ;
+import Multiproduct from './Component/Redux-Ui/Products/Multiproduct';
+import Multiedit from './Component/Redux-Ui/Products/Multiedit';
+import Multiadd from "./Component/Redux-Ui/Products/Multiadd";
 const App =()=>{
   return(
     <div>
@@ -32,6 +35,9 @@ const App =()=>{
     <Route path='/Nav' element={<Navbar/>}/>
     <Route path='/Details' element={<Details/>}/>
     <Route path='/EditPage/:id' element={<EditPage/>}/>
+    <Route path='/multi' element={<Multiproduct/>}/>
+    <Route path='/multiedit/:id' element={<Multiedit/>}/>
+    <Route path='/multiadd' element={<Multiadd/>}/>
     </Routes>
       </Router>
       </div>
