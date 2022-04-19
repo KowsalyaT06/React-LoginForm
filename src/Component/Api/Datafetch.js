@@ -1,105 +1,116 @@
-import React, { useReducer, useEffect, useState, createContext } from "react";
+import React, { useReducer, useEffect, useState} from "react";
 import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
-import { toast, ToastContainer, } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const Action = {
-    Get: 'get',
-    Delete: 'delete',
-    Edit: 'edit'
-}
+  Get: "get",
+  Delete: "delete",
+  Edit: "edit",
+};
 
 const reducer = (state, action) => {
-    switch (action.type) {
-        case Action.Get:
-            return [...state, ...action.payload]
+  switch (action.type) {
+    case Action.Get:
+      return [...state, ...action.payload];
 
-        case Action.Delete:
-            return state.filter(remove => remove.id !== action.payload)
+    case Action.Delete:
+      return state.filter((remove) => remove.id !== action.payload);
 
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
 const Datafetch = () => {
-    const [states, dispatch] = useReducer(reducer, [])
-    const [fetcherror, setErrorFetch] = useState(null)
+  const [states, dispatch] = useReducer(reducer, []);
+  const [fetcherror, setErrorFetch] = useState(null);
 
-    useEffect(() => {
-        axios.get('http://localhost:3006/users')
-            .then(response => {
-                dispatch({ type: Action.Get, payload: response.data })
-            })
-            .catch(error => {
-                toast('Error While Loading')
-                setErrorFetch(error.message)
-                console.log(error)
-            })
-    }, [])
+  useEffect(() => {
+    axios
+      .get("http://localhost:3006/users")
+      .then((response) => {
+        dispatch({ type: Action.Get, payload: response.data });
+      })
+      .catch((error) => {
+        toast("Error While Loading");
+        setErrorFetch(error.message);
+        console.log(error);
+      });
+  }, []);
 
+  const handleDelete = (e, user) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:3006/users/${user}`)
+      .then((response) => {
+        dispatch({ type: Action.Delete, payload: user });
+       
+      })
+      .catch((error) => {
+        toast.error("Request Failed");
+        setErrorFetch(error.message);
+        console.log(error);
+      });
+  };
+  const handleEdit = (e, user) => {
+    e.preventDefault();
+    navigate(`/Edit/${user}`);
+  };
 
-    const handleDelete = (e, user) => {
-        e.preventDefault()
-        axios.delete(`http://localhost:3006/users/${user}`)
-            .then(response => {
-                dispatch({ type: Action.Delete, payload: user })
-                // console.log('delete', data)
-            })
-            .catch(error => {
-                toast.error('Request Failed')
-                setErrorFetch(error.message)
-                console.log(error);
-            })
+  let navigate = useNavigate();
+  const handleMove = () => {
+    navigate("/Post");
+  };
+  return (
+    <>
+      <ToastContainer></ToastContainer>
 
-    }
-    const handleEdit = (e, user) => {
-        e.preventDefault()
-        navigate(`/Edit/${user}`)
-    }
-
-    let navigate = useNavigate()
-    const handleMove = () => {
-        navigate('/Post')
-    }
-    return (
-
-        <>
-            <ToastContainer></ToastContainer>
-
-            <div className="add">
-                <Button variant="primary" size="lg" onClick={handleMove}>ADD USER</Button>
-            </div>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {states.map(user => {
-                        return (
-                            <tr>
-                                <td>{user.id}</td>
-                                <td>{user.firstname}</td>
-                                <td>{user.Lastname}</td>
-                                <td>{user.email}</td>
-                                <td><Button variant="danger" onClick={(e) => handleDelete(e, user.id)}>DELETE</Button></td>
-                                <td><Button variant="success" onClick={(e) => handleEdit(e, user.id)}>EDIT</Button></td>
-                            </tr>
-                        );
-                    })}
-
-                </tbody>
-            </Table>
-
-        </>
-    )
-
-
-}
+      <div className="add">
+        <Button variant="primary" size="lg" onClick={handleMove}>
+          ADD USER
+        </Button>
+      </div>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {states.map((user) => {
+            return (
+              <tr>
+                <td>{user.id}</td>
+                <td>{user.firstname}</td>
+                <td>{user.Lastname}</td>
+                <td>{user.email}</td>
+                <td>
+                  <Button
+                    variant="danger"
+                    onClick={(e) => handleDelete(e, user.id)}
+                  >
+                    DELETE
+                  </Button>
+                </td>
+                <td>
+                  <Button
+                    variant="success"
+                    onClick={(e) => handleEdit(e, user.id)}
+                  >
+                    EDIT
+                  </Button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </>
+  );
+};
 export default Datafetch;

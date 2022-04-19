@@ -53,7 +53,7 @@ const Open = () =>{
 
     }
     else {
-      showModal(true)
+      showModal()
     }
 
   }
