@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState} from "react";
+import React, { useReducer, useEffect,} from "react";
 import axios from "axios";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ const Action = {
   Get: "get",
   Delete: "delete",
   Edit: "edit",
+  Add: "add",
 };
 
 const reducer = (state, action) => {
@@ -19,13 +20,15 @@ const reducer = (state, action) => {
     case Action.Delete:
       return state.filter((remove) => remove.id !== action.payload);
 
+      case Action.Add:
+        return [...action.payload];
+
     default:
       return state;
   }
 };
 const Datafetch = () => {
   const [states, dispatch] = useReducer(reducer, []);
-  const [fetcherror, setErrorFetch] = useState(null);
 
   useEffect(() => {
     axios
@@ -35,7 +38,6 @@ const Datafetch = () => {
       })
       .catch((error) => {
         toast("Error While Loading");
-        setErrorFetch(error.message);
         console.log(error);
       });
   }, []);
@@ -44,13 +46,11 @@ const Datafetch = () => {
     e.preventDefault();
     axios
       .delete(`http://localhost:3006/users/${user}`)
-      .then((response) => {
+      .then(() => {
         dispatch({ type: Action.Delete, payload: user });
-       
       })
       .catch((error) => {
         toast.error("Request Failed");
-        setErrorFetch(error.message);
         console.log(error);
       });
   };

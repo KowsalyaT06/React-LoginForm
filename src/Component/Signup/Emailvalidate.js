@@ -7,6 +7,6 @@ export const validEmail =(email) => {
    
 
  export const validPassword =(password) => {
-     const regexPassword = /^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$/;
+     const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
      return regexPassword.test(password)
  }

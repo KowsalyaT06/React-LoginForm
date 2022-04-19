@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter } from "react-router-dom";
-// import Parent from './ParentChild/Parent';
 import App from './App'
-// import './App.css';
-
 import reportWebVitals from './reportWebVitals';
-// import Portals from './Component/Portals/Portals'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import {Provider} from 'react-redux';
@@ -18,12 +13,7 @@ ReactDOM.render(
   <Provider store={Store}>
   <App />
   </Provider>
-   
-    
-    {/* <Portals/> */}
-    {/* <Parent/> */}
-   
-  </React.StrictMode>,
+   </React.StrictMode>,
   document.getElementById('root')
 );
 

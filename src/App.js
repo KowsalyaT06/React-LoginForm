@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//import Login from "./Component/Login/Login";
 import Form from "./Component/Signup/Form";
 import Home from "./Component/Home/Home";
 import Main from "./Component/UseReducer/Main";
@@ -10,18 +9,14 @@ import Edit from "./Component/Api/Edit";
 import Homes from "./Component/HOC/Homes";
 import Abouts from "./Component/HOC/Abouts";
 import Navbar from "./Component/Redux-Ui/Navbar/Navbar";
-//import Details from "./Component/Redux-Ui/Products/Details";
 import EditPage from "./Component/Redux-Ui/Products/EditPage";
-//import Multiproduct from './Component/Redux-Ui/Products/Multiproduct';
 import Multiedit from "./Component/Redux-Ui/Products/Multiedit";
 import Multiadd from "./Component/Redux-Ui/Products/Multiadd";
 
 const Multiproduct = React.lazy(() =>
   import("./Component/Redux-Ui/Products/Multiproduct")
 );
-const Login = React.lazy(() =>
-  import("./Component/Login/Login")
-);
+const Login = React.lazy(() => import("./Component/Login/Login"));
 const Details = React.lazy(() =>
   import("./Component/Redux-Ui/Products/Details")
 );
@@ -29,11 +24,9 @@ const Details = React.lazy(() =>
 const App = () => {
   return (
     <div>
-     
-        <Router>
+      <Router>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-         
             <Route path="/" element={<Form />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Home" element={<Home />} />
@@ -49,14 +42,9 @@ const App = () => {
             <Route path="/multi" element={<Multiproduct />} />
             <Route path="/multiedit/:id" element={<Multiedit />} />
             <Route path="/multiadd" element={<Multiadd />} />
-           
           </Routes>
-          </Suspense>
-        </Router>
-       
-       
-          
-     
+        </Suspense>
+      </Router>
     </div>
   );
 };

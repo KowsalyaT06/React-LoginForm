@@ -46,7 +46,7 @@ export const addMultiProducts = (dataMulti) => {
 
 //delete
 export const deleteMultiProducts = (Multiproduct) => {
-    return async (dispatch) => {
+    return async () => {
         let response = await axios.delete(`http://localhost:3007/Multiproducts/${Multiproduct}`)
             .catch((error) => {
                 console.log('error', error)
@@ -58,11 +58,12 @@ export const deleteMultiProducts = (Multiproduct) => {
 
 //Edit
 export const editMultiProducts = (addMulti, id) => {
-    return async (dispatch) => {
+    return async () => {
         const response = await axios.put(`http://localhost:3007/Multiproducts/${id}`, addMulti)
             .catch((error) => {
                 console.log('error', error)
             })
         console.log('EditMulti', addMulti);
+        console.log('EditMultiii', response);
     }
 }

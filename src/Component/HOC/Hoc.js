@@ -1,6 +1,5 @@
 import React from "react";
-
-// import './Hoc.css';
+import './Hoc.css';
 const Hoc = Pagecomponent => {
     return function MainComponent() {
 
