@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row, Button, Form, Modal } from "react-bootstrap";
 
 function Login() {
-  let navigate = useNavigate();
+ // let navigate = useNavigate();
   const intial = {
     username: "",
     email: "",
@@ -32,9 +32,9 @@ function Login() {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const Open = () => {
-    navigate("/Home");
-  };
+  // const Open = () => {
+  //   navigate("/Home");
+  // };
 
   const formSubmitter = (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ function Login() {
 
   return (
     <Container>
-      {createPortal(
+      {/* {createPortal(
         <>
           <Modal show={popup} onHide={hideModal}>
             <Modal.Header closeButton>
@@ -83,7 +83,7 @@ function Login() {
           </Modal>
         </>,
         document.getElementById("modal")
-      )}
+      )} */}
       <div className={style.Full}>
         <h1 className="mt-5 p-3 text-center rounded">LOGIN FORM</h1>
         <Row className="mt-5">
@@ -100,7 +100,7 @@ function Login() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Username"
-                  name="name"
+                 name="name"
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -110,6 +110,7 @@ function Login() {
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
+                  data-testid="email-input"
                   name="email"
                   onChange={handleChange}
                 />

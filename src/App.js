@@ -14,7 +14,7 @@ import Multiedit from "./Component/Redux-Ui/Products/Multiedit";
 import Multiadd from "./Component/Redux-Ui/Products/Multiadd";
 
 const Multiproduct = React.lazy(() =>
-  import("./Component/Redux-Ui/Products/Multiproduct")
+  import("./Component/Redux-Ui/Products/Multiproductss")
 );
 const Login = React.lazy(() => import("./Component/Login/Login"));
 const Details = React.lazy(() =>
