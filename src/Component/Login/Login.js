@@ -6,13 +6,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row, Button, Form, Modal } from "react-bootstrap";
 
 function Login() {
- // let navigate = useNavigate();
+  //let navigate = useNavigate();
   const intial = {
     username: "",
     email: "",
     password: "",
   };
+
   const [input, setInput] = useState(intial);
+  const [error, setError] = useState("");
+  const [errorpass, setErrorPass] = useState("");
 
   const [popup, setPopup] = useState(false);
   const showModal = () => {
@@ -32,9 +35,9 @@ function Login() {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // const Open = () => {
-  //   navigate("/Home");
-  // };
+  const Open = () => {
+    // navigate("/Home");
+  };
 
   const formSubmitter = (e) => {
     e.preventDefault();
@@ -66,7 +69,7 @@ function Login() {
           </Modal>
         </>,
         document.getElementById("modal")
-      )}
+      )} 
       {createPortal(
         <>
           <Modal show={modal} onHide={isclose}>
@@ -84,6 +87,7 @@ function Login() {
         </>,
         document.getElementById("modal")
       )} */}
+
       <div className={style.Full}>
         <h1 className="mt-5 p-3 text-center rounded">LOGIN FORM</h1>
         <Row className="mt-5">
@@ -100,7 +104,7 @@ function Login() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Username"
-                 name="name"
+                  name="name"
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -114,6 +118,11 @@ function Login() {
                   name="email"
                   onChange={handleChange}
                 />
+                {error && !/\S+@\S+\.\S+/.test(error) && (
+                  <span className="error" data-testid="email-error">
+                    Invalid email
+                  </span>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -121,13 +130,19 @@ function Login() {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  data-testid="pass-input"
                   name="password"
                   onChange={handleChange}
                 />
+                {errorpass && !/^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/.test(errorpass) && (
+                  <span className="errorpass" data-testid="pass-error">
+                    Invalid password
+                  </span>
+                )}
               </Form.Group>
 
               <div className="d-grid gap-2">
-                <Button variant="primary" type="submit" size="lg">
+                <Button variant="primary" type="submit" data-testid="button" size="lg">
                   LOGIN
                 </Button>
               </div>
