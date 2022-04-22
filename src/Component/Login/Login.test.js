@@ -1,8 +1,6 @@
-import { getByTestId, render, screen } from "@testing-library/react";
+import { fireEvent, getByText, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Login from "./Login";
-
-const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
 
 describe("Input field testing", () => {
   test("email input", () => {
@@ -23,40 +21,79 @@ describe("Input field testing", () => {
 
     expect(emailElement).toHaveValue("abc@mail.com");
     expect(screen.queryByTestId("email-error")).not.toBeInTheDocument();
-  });
-});
-
-test("testing password", () => {
-  render(<Login />);
-  const passElement = screen.getByTestId("pass-input");
-  expect(passElement).toBeInTheDocument();
-  expect(passElement).toHaveAttribute("type", "password");
-});
-
-test("testing valid password", () => {
-  render(<Login />);
-  const passElement = screen.getByTestId("pass-input");
-  let password = "pass/@123&";
-  expect(regexPassword.test(password)).toBe(true);
-});
-
-// test("testing invalid password", () => {
-//   //Arrange
-//   render(<Login />);
-
-//   //Act
-//   const passElement = screen.getByTestId("pass-input");
-//   userEvent.type(passElement, "pass");
-//   //Assert
  
-//   const passerrorElement = getByText("pass-error");
-//   expect(passElement).toHaveValue("pass");
-//   expect(passerrorElement).toBeInTheDocument();
-//   //expect(screen.queryByTestId("pass-error").textContent).toEqual("Invalid password");
-// });
+    });
 
-test("submit button",()=>{
-  render(<Login/>)
-//const button = screen.getByTestId('button')  
-expect(screen.getByTestId("button")).toHaveTextContent("Login")
-})
+
+
+  test("testing invalid email", () => {
+    render(<Login />);
+
+    const emailElement = screen.getByTestId("pass-input");
+    userEvent.type(emailElement, "email");
+
+    const emailerrorElement = screen.queryByTestId("email-error");
+    expect(emailerrorElement).toBeInTheDocument();
+    const emailtext = screen.getByText(" Invalid email", { exact: false });
+    expect(emailtext).toBeInTheDocument();
+  });
+
+  test("testing password", () => {
+    render(<Login />);
+    const passElement = screen.getByTestId("pass-input");
+    expect(passElement).toBeInTheDocument();
+    expect(passElement).toHaveAttribute("type", "password");
+  });
+
+  test("testing valid password", () => {
+    const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
+    render(<Login />);
+    //const passElement = screen.getByTestId("pass-input");
+    let password = "pass/@123&";
+    expect(regexPassword.test(password)).toBe(true);
+  });
+
+  // test("testing invalid password", () => {
+  //   //Arrange
+  //   render(<Login />);
+
+  //   //Act
+  //   const passElement = screen.getByTestId("pass-input");
+  //   userEvent.type(passElement, "pass");
+
+  //   const passerrorElement = screen.queryByTestId("error-pass");
+  //   expect(passerrorElement).toBeInTheDocument();
+  //   const passtext = screen.getByText(" Invalid password", { exact: false });
+  //   expect(passtext).toBeInTheDocument();
+  // });
+
+  test("checkButton Render", () => {
+    render(<Login />);
+
+    const btn = screen.getByTestId("button");
+    expect(btn).toBeTruthy();
+  });
+
+  test("check button", async () => {
+    render(<Login />);
+
+    const button = await screen.findAllByRole("button");
+    expect(button).toHaveLength(1);
+  });
+
+  test("submit button",()=>{
+
+    render(<Login/>)
+
+    fireEvent.change(screen.queryByPlaceholderText(/Enter email/i), {
+      target: {value: "abc@123"},
+  });
+
+  fireEvent.change(screen.queryByPlaceholderText(/Password/i), {
+    target: {value: "pass@123"},
+  });
+
+  fireEvent.click(screen.getByText(/LOGIN/i));
+
+  })
+});
