@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button } from "react-bootstrap";
-import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
-import { editProducts } from "../Redux/Action/Action";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
+import { editProducts } from '../Redux/Action/Action';
 const EditPage = () => {
   const [send, setSend] = useState({});
   const [add, setAdd] = useState({
     title: send.title,
     Price: send.Price,
     Url: send.Url,
-    Content: send.Content,
+    Content: send.Content
   });
 
   const dispatch = useDispatch();
@@ -20,12 +20,12 @@ const EditPage = () => {
   };
 
   let { id } = useParams();
-  console.log(id, "param");
+  console.log(id, 'param');
   useEffect(() => {
     axios
       .get(`http://localhost:3006/products/${id}`)
       .then((response) => {
-        console.log(response, "hii");
+        console.log(response, 'hii');
         setSend(response.data);
       })
       .catch((error) => {
@@ -44,7 +44,7 @@ const EditPage = () => {
     e.preventDefault();
     dispatch(editProducts(add, id));
 
-    navigate("/Nav");
+    navigate('/Nav');
   };
   return (
     <>
@@ -52,28 +52,13 @@ const EditPage = () => {
       <div>
         <form>
           <div className="style">
-            <input
-              placeholder="Add title"
-              name="title"
-              value={add.title}
-              onChange={handleChange}
-            />
+            <input placeholder="Add title" name="title" value={add.title} onChange={handleChange} />
             <br></br>
 
-            <input
-              placeholder="Add price"
-              name="Price"
-              value={add.Price}
-              onChange={handleChange}
-            />
+            <input placeholder="Add price" name="Price" value={add.Price} onChange={handleChange} />
             <br></br>
 
-            <input
-              placeholder="Add url"
-              name="Url"
-              value={add.Url}
-              onChange={handleChange}
-            />
+            <input placeholder="Add url" name="Url" value={add.Url} onChange={handleChange} />
             <br></br>
 
             <input

@@ -1,23 +1,23 @@
-import { Grid, Paper, TextField, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { validEmail, validPassword } from "./Emailvalidate";
-import React, { useState } from "react";
-import classes from "./Register.module.css";
+import { Grid, Paper, TextField, Button } from '@mui/material';
+//import { useNavigate } from 'react-router-dom';
+import { validEmail, validPassword } from './Emailvalidate';
+import React, { useState } from 'react';
+import classes from './Register.module.css';
 
 const Form = () => {
-  let navigate = useNavigate();
+  //let navigate = useNavigate();
   const [inputs, setInput] = useState({
-    firstname: "",
-    Lastname: "",
-    Mobile: "",
-    email: "",
-    password: "",
-    confirmpassword: "",
+    firstname: '',
+    Lastname: '',
+    Mobile: '',
+    email: '',
+    password: '',
+    confirmpassword: ''
   });
 
-  const [errorMessage, seterrorMessage] = useState("");
-  const [errorPass, seterrorPass] = useState("");
-  const [errorconfirmPass, seterrorConfirmPass] = useState("");
+  const [errorMessage, seterrorMessage] = useState('');
+  const [errorPass, seterrorPass] = useState('');
+  const [errorconfirmPass, seterrorConfirmPass] = useState('');
 
   const handleChange = (e) => {
     setInput({ ...inputs, [e.target.name]: e.target.value });
@@ -25,32 +25,27 @@ const Form = () => {
   const submit = (e) => {
     e.preventDefault();
 
-    if (!validEmail(inputs.email))
-      return seterrorMessage("Please enter valid email");
+    if (!validEmail(inputs.email)) return seterrorMessage('Please enter valid email');
     if (!validPassword(inputs.password))
-      return seterrorPass("Password should have 8 minimum characters");
-    if (inputs.confirmpassword !== inputs.password)
-      return seterrorConfirmPass("Password mismatch");
+      return seterrorPass('Password should have 8 minimum characters');
+    if (inputs.confirmpassword !== inputs.password) return seterrorConfirmPass('Password mismatch');
 
-    navigate("/Login");
+    //navigate('/Login');
 
-    let dataStore = localStorage.getItem("datas");
+    let dataStore = localStorage.getItem('datas');
     if (dataStore) {
       let localData = JSON.parse(dataStore);
       localData.push(inputs);
-      localStorage.setItem("datas", JSON.stringify(localData));
+      localStorage.setItem('datas', JSON.stringify(localData));
     } else {
-      localStorage.setItem("datas", JSON.stringify([inputs]));
+      localStorage.setItem('datas', JSON.stringify([inputs]));
     }
   };
   return (
     <>
       <div>
         <Grid align="center">
-          <Paper
-            elevation={6}
-            style={{ padding: "30px 20px", width: 300, margin: "20px auto" }}
-          >
+          <Paper elevation={6} style={{ padding: '30px 20px', width: 300, margin: '20px auto' }}>
             <h2>Sign Up</h2>
 
             <form className={classes.full}>
@@ -87,11 +82,14 @@ const Form = () => {
                 value={inputs.email}
                 placeholder="abc@g.com"
                 variant="standard"
+                data-testid="input-email"
                 name="email"
                 onChange={handleChange}
               />
               {errorMessage && (
-                <div style={{ color: "red" }}>{errorMessage}</div>
+                <div style={{ color: 'red' }} data-testid="mail-error">
+                  {errorMessage}
+                </div>
               )}
 
               <TextField
@@ -101,9 +99,10 @@ const Form = () => {
                 variant="standard"
                 value={inputs.password}
                 placeholder="Enter your password"
+                data-testid="input-pass"
                 onChange={handleChange}
               />
-              {errorPass && <div style={{ color: "red" }}>{errorPass}</div>}
+              {errorPass && <div style={{ color: 'red' }}>{errorPass}</div>}
 
               <TextField
                 type="password"
@@ -114,17 +113,15 @@ const Form = () => {
                 value={inputs.confirmpassword}
                 onChange={handleChange}
               />
-              {errorconfirmPass && (
-                <div style={{ color: "red" }}>{errorconfirmPass}</div>
-              )}
+              {errorconfirmPass && <div style={{ color: 'red' }}>{errorconfirmPass}</div>}
 
               <Button
                 type="submit"
                 variant="contained"
                 color="primary"
                 onClick={submit}
-                style={{ margin: "10px" }}
-              >
+                data-testid="button"
+                style={{ margin: '10px' }}>
                 submit
               </Button>
             </form>

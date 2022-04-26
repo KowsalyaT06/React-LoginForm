@@ -1,15 +1,16 @@
-import React, { useReducer, useEffect,} from "react";
-import axios from "axios";
-import { Button, Table } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer } from "react-toastify";
+/* eslint-disable react/jsx-key */
+import React, { useReducer, useEffect } from 'react';
+import axios from 'axios';
+import { Button, Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Action = {
-  Get: "get",
-  Delete: "delete",
-  Edit: "edit",
-  Add: "add",
+  Get: 'get',
+  Delete: 'delete',
+  Edit: 'edit',
+  Add: 'add'
 };
 
 const reducer = (state, action) => {
@@ -20,8 +21,8 @@ const reducer = (state, action) => {
     case Action.Delete:
       return state.filter((remove) => remove.id !== action.payload);
 
-      case Action.Add:
-        return [...action.payload];
+    case Action.Add:
+      return [...action.payload];
 
     default:
       return state;
@@ -32,12 +33,12 @@ const Datafetch = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3006/users")
+      .get('http://localhost:3006/users')
       .then((response) => {
         dispatch({ type: Action.Get, payload: response.data });
       })
       .catch((error) => {
-        toast("Error While Loading");
+        toast('Error While Loading');
         console.log(error);
       });
   }, []);
@@ -50,7 +51,7 @@ const Datafetch = () => {
         dispatch({ type: Action.Delete, payload: user });
       })
       .catch((error) => {
-        toast.error("Request Failed");
+        toast.error('Request Failed');
         console.log(error);
       });
   };
@@ -61,7 +62,7 @@ const Datafetch = () => {
 
   let navigate = useNavigate();
   const handleMove = () => {
-    navigate("/Post");
+    navigate('/Post');
   };
   return (
     <>
@@ -90,18 +91,12 @@ const Datafetch = () => {
                 <td>{user.Lastname}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Button
-                    variant="danger"
-                    onClick={(e) => handleDelete(e, user.id)}
-                  >
+                  <Button variant="danger" onClick={(e) => handleDelete(e, user.id)}>
                     DELETE
                   </Button>
                 </td>
                 <td>
-                  <Button
-                    variant="success"
-                    onClick={(e) => handleEdit(e, user.id)}
-                  >
+                  <Button variant="success" onClick={(e) => handleEdit(e, user.id)}>
                     EDIT
                   </Button>
                 </td>

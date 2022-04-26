@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button } from "react-bootstrap";
-import axios from "axios";
-import { useParams, useNavigate  } from "react-router-dom";
-import { editMultiProducts } from "../Redux/Action/MultiAction";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
+import { editMultiProducts } from '../Redux/Action/MultiAction';
 
 const MultiEdit = () => {
   const [send, setSend] = useState({});
@@ -11,7 +11,7 @@ const MultiEdit = () => {
     title: send.title,
     Price: send.Price,
     Url: send.Url,
-    Content: send.Content,
+    Content: send.Content
   });
 
   const dispatch = useDispatch();
@@ -21,12 +21,12 @@ const MultiEdit = () => {
   };
 
   let { id } = useParams();
-  console.log(id, "param");
+  console.log(id, 'param');
   useEffect(() => {
     axios
       .get(`http://localhost:3007/Multiproducts/${id}`)
       .then((response) => {
-        console.log(response, "Multiedit");
+        console.log(response, 'Multiedit');
         setSend(response.data);
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ const MultiEdit = () => {
     e.preventDefault();
     dispatch(editMultiProducts(addMulti, id));
 
-    navigate("/multi");
+    navigate('/multi');
   };
   return (
     <>
@@ -69,12 +69,7 @@ const MultiEdit = () => {
             />
             <br></br>
 
-            <input
-              placeholder="Add url"
-              name="Url"
-              value={addMulti.Url}
-              onChange={handleChange}
-            />
+            <input placeholder="Add url" name="Url" value={addMulti.Url} onChange={handleChange} />
             <br></br>
 
             <input

@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { setProducts, deleteProducts } from "../Redux/Action/Action";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProducts, deleteProducts } from '../Redux/Action/Action';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
   const products = useSelector((state) => state.allProducts.products);
 
-  console.log("productset", products);
+  console.log('productset', products);
   const dispatch = useDispatch();
   const [deletes, setDelete] = useState(false);
 
   useEffect(() => {
     dispatch(setProducts());
   }, [dispatch]);
-  console.log("productss", products);
+  console.log('productss', products);
 
   //for page refresh
   useEffect(() => {
@@ -43,11 +43,7 @@ const Products = () => {
                     <div className="card border-primary mb-3">
                       <div className="card-body">
                         <div className="image">
-                          <img
-                            src={product.Url}
-                            className="card-img-top"
-                            alt={product.title}
-                          />
+                          <img src={product.Url} className="card-img-top" alt={product.title} />
                         </div>
 
                         <h5 className="card-title">{product.title}</h5>
@@ -57,15 +53,11 @@ const Products = () => {
                         <Button
                           variant="primary"
                           className="me-2"
-                          onClick={() => handleEdit(product.id)}
-                        >
+                          onClick={() => handleEdit(product.id)}>
                           Edit
                         </Button>
 
-                        <Button
-                          variant="danger"
-                          onClick={() => handleDelete(product.id)}
-                        >
+                        <Button variant="danger" onClick={() => handleDelete(product.id)}>
                           Delete
                         </Button>
                       </div>

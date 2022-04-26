@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Navbar, NavDropdown, Nav, Table, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import classs from "./Home.module.css";
+/* eslint-disable react/jsx-key */
+import React, { useEffect, useState } from 'react';
+import { Navbar, NavDropdown, Nav, Table, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import classs from './Home.module.css';
 
 const Home = () => {
-   
   const [change, setChange] = useState([]);
 
   useEffect(() => {
-    let showData = localStorage.getItem("datas");
+    let showData = localStorage.getItem('datas');
     let changes = JSON.parse(showData);
     setChange(changes);
   }, []);
-  let Users = localStorage.getItem("currents");
+  let Users = localStorage.getItem('currents');
   let userDatas = JSON.parse(Users);
 
   let navigate = useNavigate();
   function Logout() {
-    localStorage.removeItem("currents");
-    navigate("/Login");
+    localStorage.removeItem('currents');
+    navigate('/Login');
   }
- 
- return (
-        <>
+
+  return (
+    <>
       <div className={classs.head}>
         <Navbar bg="success" expand="lg">
           <Container>

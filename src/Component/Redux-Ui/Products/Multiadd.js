@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import "./Details.css";
-import { addMultiProducts } from "../Redux/Action/MultiAction";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import './Details.css';
+import { addMultiProducts } from '../Redux/Action/MultiAction';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const Multiadd = () => {
   const [dataMulti, setDataMulti] = useState({
-    title: "",
-    Price: "",
-    Url: "",
-    Content: "",
+    title: '',
+    Price: '',
+    Url: '',
+    Content: ''
   });
 
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Multiadd = () => {
     e.preventDefault();
     dispatch(addMultiProducts(dataMulti));
 
-    navigate("/multi");
+    navigate('/multi');
   };
 
   return (
@@ -49,12 +49,7 @@ const Multiadd = () => {
             />
             <br></br>
 
-            <input
-              placeholder="Add url"
-              name="Url"
-              value={dataMulti.Url}
-              onChange={handleChange}
-            />
+            <input placeholder="Add url" name="Url" value={dataMulti.Url} onChange={handleChange} />
             <br></br>
 
             <input

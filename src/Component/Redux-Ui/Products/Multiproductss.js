@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setMultiProducts,
-  deleteMultiProducts,
-} from "../Redux/Action/MultiAction";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMultiProducts, deleteMultiProducts } from '../Redux/Action/MultiAction';
+import { useNavigate } from 'react-router-dom';
 
 const Multiproductss = () => {
-  const Multiproduct = useSelector(
-    (state) => state.multiProducts.Multiproducts
-  );
-  console.log("store", Multiproduct);
+  const Multiproduct = useSelector((state) => state.multiProducts.Multiproducts);
+  console.log('store', Multiproduct);
 
   const dispatch = useDispatch();
   const [deletes, setDelete] = useState(false);
@@ -19,7 +14,7 @@ const Multiproductss = () => {
   useEffect(() => {
     dispatch(setMultiProducts());
   }, [dispatch]);
-  console.log("effect", Multiproduct);
+  console.log('effect', Multiproduct);
 
   //for page refresh
   useEffect(() => {
@@ -39,7 +34,7 @@ const Multiproductss = () => {
   };
 
   const handladd = () => {
-    navigate("/Multiadd");
+    navigate('/Multiadd');
   };
   const renderss = Multiproduct.map((productset) => {
     const { title, Price, Url, Content } = productset;
@@ -64,15 +59,11 @@ const Multiproductss = () => {
                   <Button
                     variant="primary"
                     className="me-2"
-                    onClick={(e) => handleEdit(e, productset.id)}
-                  >
+                    onClick={(e) => handleEdit(e, productset.id)}>
                     Edit
                   </Button>
 
-                  <Button
-                    variant="danger"
-                    onClick={(e) => handleDelete(e, productset.id)}
-                  >
+                  <Button variant="danger" onClick={(e) => handleDelete(e, productset.id)}>
                     Delete
                   </Button>
                 </div>
@@ -97,17 +88,12 @@ const Multiproductss = () => {
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="Button">
-              <a
-                href=""
-                className="btn btn-outline-dark ms-2"
-                onClick={handladd}
-              >
+              <a href="" className="btn btn-outline-dark ms-2" onClick={handladd}>
                 ADD PRODUCT
               </a>
             </div>

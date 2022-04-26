@@ -1,8 +1,8 @@
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore } from 'redux';
 import CombineReducer from '../Reducer/CombineReducer';
-import ThunkMiddleware from "redux-thunk";
+import ThunkMiddleware from 'redux-thunk';
 
-const middleware=[ThunkMiddleware]
-const Store = createStore(CombineReducer,(applyMiddleware(...middleware)));
+const middleware = [ThunkMiddleware];
+const Store = createStore(CombineReducer, applyMiddleware(...middleware));
 
-export default Store
+export default Store;

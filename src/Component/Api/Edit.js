@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Edit = () => {
   const [send, setSend] = useState({});
   const [add, setAdd] = useState({
     firstname: send.firstname,
     Lastname: send.Lastname,
-    email: send.email,
+    email: send.email
   });
 
   const handleChange = (e) => {
@@ -18,17 +18,17 @@ const Edit = () => {
   };
 
   let { id } = useParams();
-  console.log(id, "param");
+  console.log(id, 'param');
 
   useEffect(() => {
     axios
       .get(`http://localhost:3006/users/${id}`)
       .then((response) => {
-        console.log(response, "hii");
+        console.log(response, 'hii');
         setSend(response.data);
       })
       .catch((error) => {
-        toast("Error While Loading");
+        toast('Error While Loading');
         console.log(error);
       });
   }, [id]);
@@ -44,10 +44,10 @@ const Edit = () => {
     axios
       .put(`http://localhost:3006/users/${id}`, add)
       .then(() => {
-        navigate("/Api");
+        navigate('/Api');
       })
       .catch((error) => {
-        toast.warn("Request Failed! Error while Editing");
+        toast.warn('Request Failed! Error while Editing');
         console.log(error);
       });
   };
@@ -61,8 +61,7 @@ const Edit = () => {
           placeholder="Enter first Name"
           name="firstname"
           value={add.firstname}
-          onChange={handleChange}
-        ></input>
+          onChange={handleChange}></input>
         <br></br>
 
         <input
@@ -70,8 +69,7 @@ const Edit = () => {
           placeholder="Enter Last Name"
           name="Lastname"
           value={add.Lastname}
-          onChange={handleChange}
-        ></input>
+          onChange={handleChange}></input>
         <br></br>
 
         <input
@@ -79,8 +77,7 @@ const Edit = () => {
           placeholder="Enter Email"
           name="email"
           value={add.email}
-          onChange={handleChange}
-        ></input>
+          onChange={handleChange}></input>
       </div>
       <div className="btn">
         <Button variant="success" size="lg" onClick={handleput}>

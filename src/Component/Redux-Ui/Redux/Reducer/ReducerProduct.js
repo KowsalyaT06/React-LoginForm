@@ -1,11 +1,11 @@
-import { ActionTypes } from "../Action/Actiontype";
+import { ActionTypes } from '../Action/Actiontype';
 
 const intial = {
   products: [],
-  Multiproducts: [],
+  Multiproducts: []
 };
 
-export const ReducerProduct = (state = intial,action) => {
+export const ReducerProduct = (state = intial, action) => {
   switch (action.type) {
     case ActionTypes.SET_PRODUCT:
       return { ...state, products: action.payload };
@@ -16,7 +16,7 @@ export const ReducerProduct = (state = intial,action) => {
   }
 };
 
-export const Multiproductreducer = (state = intial,action) => {
+export const Multiproductreducer = (state = intial, action) => {
   switch (action.type) {
     case ActionTypes.SET_MULTIPRODUCT:
       return { ...state, Multiproducts: action.payload };

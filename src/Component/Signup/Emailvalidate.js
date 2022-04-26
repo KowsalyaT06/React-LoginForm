@@ -1,12 +1,9 @@
+export const validEmail = (email) => {
+  const validRegex = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
+  return validRegex.test(email);
+};
 
-
-export const validEmail =(email) => {
-    const validRegex =  /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
-    return validRegex.test(email)
-}
-   
-
- export const validPassword =(password) => {
-     const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
-     return regexPassword.test(password)
- }
+export const validPassword = (password) => {
+  const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
+  return regexPassword.test(password);
+};

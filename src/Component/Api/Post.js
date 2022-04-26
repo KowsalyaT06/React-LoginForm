@@ -1,11 +1,11 @@
-import React, { useReducer, useState } from "react";
-import { Button } from "react-bootstrap";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useReducer, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Post = () => {
-  const [dispatch] = useReducer("");
-  const [data, setData] = useState({ firstname: "", Lastname: "", email: "" });
+  const [dispatch] = useReducer('');
+  const [data, setData] = useState({ firstname: '', Lastname: '', email: '' });
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -15,15 +15,15 @@ const Post = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3006/users", data)
+      .post('http://localhost:3006/users', data)
       .then((response) => {
         dispatch({ type: data, payload: response.data });
-        console.log("add", data);
+        console.log('add', data);
       })
       .catch((error) => {
         console.log(error);
       });
-    navigate("/Api");
+    navigate('/Api');
   };
   return (
     <>
@@ -45,12 +45,7 @@ const Post = () => {
           />
           <br></br>
 
-          <input
-            placeholder="Add Email"
-            name="email"
-            value={data.email}
-            onChange={handleChange}
-          />
+          <input placeholder="Add Email" name="email" value={data.email} onChange={handleChange} />
         </div>
       </form>
       <div className="btn">

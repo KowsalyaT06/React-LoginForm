@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
-import { contextsss } from "./Todo";
+/* eslint-disable react/prop-types */
+import React, { useContext, useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+import { contextsss } from './Todo';
 
 const Modals = (props) => {
-  console.log("jkdhsuf", props.send);
+  console.log('jkdhsuf', props.send);
   const [datas, setDatas] = useState({
-    name: props.send.name,
+    name: props.send.name
   });
   const Access = useContext(contextsss);
 
@@ -13,10 +14,10 @@ const Modals = (props) => {
     e.preventDefault();
     let dummy = {
       id: props.send.id,
-      name: datas.name,
+      name: datas.name
     };
 
-    console.log("Modals", dummy);
+    console.log('Modals', dummy);
     props.sending(dummy);
   };
 
@@ -35,8 +36,7 @@ const Modals = (props) => {
           placeholder="Enter List"
           name="name"
           value={datas.name}
-          onChange={handleChange}
-        ></Form.Control>
+          onChange={handleChange}></Form.Control>
 
         <Modal.Footer>
           <Button variant="primary" onClick={handleSave}>
