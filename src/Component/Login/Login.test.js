@@ -33,8 +33,8 @@ describe('Input field testing', () => {
   test('testing valid password', () => {
     const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
     render(<Login />);
-    //const passElement = screen.getByTestId("pass-input");
-    let password = 'pass/@123&';
+
+    let password = 'pass@123';
     expect(regexPassword.test(password)).toBe(true);
   });
 
@@ -51,20 +51,4 @@ describe('Input field testing', () => {
     const button = await screen.findAllByRole('button');
     expect(button).toHaveLength(1);
   });
-
-  // test("submit button",()=>{
-
-  //   render(<Login/>)
-
-  //   fireEvent.change(screen.queryByPlaceholderText(/Enter email/i), {
-  //     target: {value: "abc@123"},
-  // });
-
-  // fireEvent.change(screen.queryByPlaceholderText(/Password/i), {
-  //   target: {value: "pass@123"},
-  // });
-
-  // fireEvent.click(screen.getByText(/LOGIN/i));
-
-  // })
 });

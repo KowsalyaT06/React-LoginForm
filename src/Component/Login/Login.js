@@ -6,8 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Container, Row, Button, Form, Modal } from 'react-bootstrap';
 
 function Login() {
-  //let navigate = useNavigate();
-
   const [input, setInput] = useState({
     username: '',
     email: '',
@@ -30,10 +28,6 @@ function Login() {
   };
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
-  };
-
-  const Open = () => {
-    // navigate("/Home");
   };
 
   const formSubmitter = (e) => {
@@ -71,9 +65,7 @@ function Login() {
           <Modal.Body>Successfully Login </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={Open}>
-              Continue
-            </Button>
+            <Button variant="primary">Continue</Button>
           </Modal.Footer>
         </Modal>
 

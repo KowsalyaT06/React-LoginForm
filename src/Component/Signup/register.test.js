@@ -29,7 +29,7 @@ describe('Signup input field testing', () => {
   test('testing valid password', () => {
     const regexPassword = /^(?=.*?[A-Za-z])(?=.*?\d).{8,}$/;
     render(<Form />);
-    //const passElement = screen.getByTestId("pass-input");
+
     let password = 'pass/@123&';
     expect(regexPassword.test(password)).toBe(true);
   });

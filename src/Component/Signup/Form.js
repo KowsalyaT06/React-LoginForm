@@ -1,11 +1,10 @@
 import { Grid, Paper, TextField, Button } from '@mui/material';
-//import { useNavigate } from 'react-router-dom';
+
 import { validEmail, validPassword } from './Emailvalidate';
 import React, { useState } from 'react';
 import classes from './Register.module.css';
 
 const Form = () => {
-  //let navigate = useNavigate();
   const [inputs, setInput] = useState({
     firstname: '',
     Lastname: '',
@@ -29,8 +28,6 @@ const Form = () => {
     if (!validPassword(inputs.password))
       return seterrorPass('Password should have 8 minimum characters');
     if (inputs.confirmpassword !== inputs.password) return seterrorConfirmPass('Password mismatch');
-
-    //navigate('/Login');
 
     let dataStore = localStorage.getItem('datas');
     if (dataStore) {
